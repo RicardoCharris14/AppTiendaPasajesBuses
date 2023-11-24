@@ -10,7 +10,7 @@ public class UnPiso implements Pisos {
         this.nroAsientos = nroAsientos;
     }
     @Override
-    public void setAsiento(Asiento asiento, int pisoAsiento){
+    public void addAsiento(Asiento asiento, int pisoAsiento){
         if(pisoAsiento == 1){
             asientosPiso1.add(asiento);
         }
