@@ -3,7 +3,10 @@ package org.Logica;
 import java.util.ArrayList;
 
 public interface Pisos {
-    public void setAsiento(Asiento asiento, int pisoAsiento);
-    public Asiento getAsiento(int NroAsiento);
+    void setAsiento(Asiento asiento, int pisoAsiento);
+    Asiento getAsiento(int NroAsiento);
+    int getNroAsientosPiso1();
+    int getNroAsientosPiso2();
+
 }
 
