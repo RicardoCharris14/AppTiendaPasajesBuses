@@ -19,7 +19,7 @@ public class Pasaje {
         rutCliente = cliente.getRut();
         tipoBus = bus.getTipoBus();
         this.nroAsiento = nroAsiento;
-        if(bus.pisos.getNroAsientosPiso1()-nroAsiento>=0){
+        if(bus.getPisos().getNroAsientosPiso1()-nroAsiento>=0){
             pisoAsiento = 1;
         }
         else{

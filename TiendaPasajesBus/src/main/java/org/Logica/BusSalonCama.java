@@ -18,7 +18,7 @@ public class BusSalonCama extends Bus{
     }
     @Override
     public Asiento getAsiento(int nroAsiento){
-        return pisos.getAsiento(nroAsiento);
+        return getPisos().getAsiento(nroAsiento);
     }
     @Override
     public String getTipoBus() {
