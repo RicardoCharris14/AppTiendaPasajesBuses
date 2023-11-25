@@ -8,4 +8,7 @@ public abstract class Bus {
         this.recorrido = recorrido;
     }
     public abstract Asiento getAsiento(int nroAsiento);
+    public Recorrido getRecorrido(){
+        return recorrido;
+    }
 }
