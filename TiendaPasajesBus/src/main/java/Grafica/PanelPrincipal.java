@@ -6,31 +6,40 @@ import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
 
+    private Image emeBusChocado;
+    private Image emeBusLogo;
+
     public PanelPrincipal() {
-        this.setBackground(Color.white);
+
+        PanelFotoEncabezado fotoEncabezado = new PanelFotoEncabezado();
+        fotoEncabezado.setBounds(150, 30, 1200, 250);
+
+        emeBusChocado = new ImageIcon("src/main/java/Grafica/Imagenes/busemeChocado.png").getImage();
+        emeBusLogo = new ImageIcon("src/main/java/Grafica/Imagenes/emebusLogo.png").getImage();
+
+        ListaOpcionesDesplegables listaOrigenDestinoFecha = new ListaOpcionesDesplegables();
+
+        this.add(fotoEncabezado);
+        this.add(listaOrigenDestinoFecha.getListaCiudadesOrigen());
+        this.add(listaOrigenDestinoFecha.getListaCiudadesDeDestino());
+        this.add(listaOrigenDestinoFecha.getListaFechasViaje());
+        this.add(listaOrigenDestinoFecha.getBuscarViajes());
+
+
+        this.setBackground(Color.yellow);
         this.setLayout(null);
-        this.setBounds(205,85,1500,850);
+        this.setBounds(205, 85, 1500, 850);
 
-        JPanel panelLogoBus = new JPanel();
-        panelLogoBus.setLayout(null);
-        panelLogoBus.setBackground(Color.GREEN);
-        panelLogoBus.setBounds(150,30,1200,170); // 500 500
-        LineBorder borde = new LineBorder(Color.BLACK, 2, true);
-        panelLogoBus.setBorder(borde);
+        repaint();
+    }
 
-        /*JLabel textoLogo = new JLabel("TREMENDO MARICON");
-        textoLogo.setFont(new Font("Arial Black", Font.BOLD, 30));
-        textoLogo.setForeground(Color.BLUE);
-        textoLogo.setBounds(50,40,1000,80);
-
-        panelLogoBus.add(textoLogo);*/
-        this.add(panelLogoBus);
-
-
-
-
-
-
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.drawImage(emeBusChocado,75,500,500,300,this);
+        g.drawImage(emeBusLogo,900,370,500,500,this);
 
     }
+
 }
+

@@ -23,7 +23,7 @@ public class Ventana extends JFrame {
 
         // con  setBounds( posicion x, posicion y, ancho, largo)
         // con setLocationRelativeTo(null)  establecemos la pantalla o la ventana al centro
-        this.getContentPane().setBackground(Color.cyan);
+        this.getContentPane().setBackground(Color.blue);
 
 
     }
