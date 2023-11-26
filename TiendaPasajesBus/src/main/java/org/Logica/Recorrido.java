@@ -1,12 +1,12 @@
 package org.Logica;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Recorrido {
-    private Date fechaSalida;
+    private LocalDateTime fechaSalida;
     private String origen;
     private String destino;
-    public Recorrido(String origen, String destino, Date fechaSalida){
+    public Recorrido(String origen, String destino, LocalDateTime fechaSalida){
         this.fechaSalida = fechaSalida;
         this.origen = origen;
         this.destino = destino;
@@ -20,7 +20,7 @@ public class Recorrido {
     public String getDestino(){
         return destino;
     }
-    public Date getFechaSalida(){
+    public LocalDateTime getFechaSalida(){
         return fechaSalida;
     }
 

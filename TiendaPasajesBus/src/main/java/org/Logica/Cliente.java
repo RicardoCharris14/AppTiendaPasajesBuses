@@ -21,4 +21,7 @@ public class Cliente {
             System.out.println("\n"+e.getMessage());
         }
     }
+    public Pasaje getPasaje(){
+        return pasaje;
+    }
 }

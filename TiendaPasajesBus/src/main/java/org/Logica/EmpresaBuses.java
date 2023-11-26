@@ -1,7 +1,7 @@
 package org.Logica;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class EmpresaBuses {
     private int nroBuses;
@@ -12,7 +12,7 @@ public class EmpresaBuses {
         this.capacidadBuses = capacidadBuses;
         buses = new ArrayList<>();
     }
-    public void agregarBus(Bus bus,String origen, String destino, Date fecha, int precio){
+    public void agregarBus(Bus bus, String origen, String destino, LocalDateTime fecha, int precio){
         if(bus!=null && buses.size()<capacidadBuses){
             nroBuses+=1;
             Recorrido recorrido= new Recorrido(origen,destino,fecha);
@@ -25,17 +25,17 @@ public class EmpresaBuses {
     }
     public Pasaje comprarPasaje(Cliente cliente, int nroBus, int nroAsiento)throws AsientoOcupadoException{
         if(nroBus>0 && nroBus<=nroBuses){
-            Bus busSolicitado = buses.get(nroBus+1);
+            Bus busSolicitado = buses.get(nroBus-1);
             Asiento asientoSolicitado = busSolicitado.getAsiento(nroAsiento);
             if(asientoSolicitado!= null){
                 if(asientoSolicitado.getDisponible()){
                     asientoSolicitado.setDisponible(false);
                     Pasaje pasaje = new Pasaje(cliente, busSolicitado, asientoSolicitado.getNumAsiento());
-                    System.out.println("\n"+pasaje.emitirPasaje());
+                    System.out.println(pasaje.emitirPasaje());
                     return pasaje;
                 }
                 else{
-                    throw new AsientoOcupadoException("El asiento no está disponible.");
+                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no está disponible.\n");
                 }
             }
             else{
