@@ -1,4 +1,4 @@
-package org.Logica;
+package Logica;
 
 public class BusSalonCama extends Bus{
     private String tipoBus;

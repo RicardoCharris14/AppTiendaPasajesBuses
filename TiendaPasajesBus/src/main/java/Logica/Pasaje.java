@@ -1,4 +1,4 @@
-package org.Logica;
+package Logica;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

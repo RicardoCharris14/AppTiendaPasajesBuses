@@ -1,4 +1,4 @@
-package org.Logica;
+package Logica;
 
 public abstract class Bus {
     private Pisos pisos;

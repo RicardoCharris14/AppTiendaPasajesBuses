@@ -1,4 +1,4 @@
-package org.Logica;
+package Logica;
 
 public class Cliente {
     private final String nombre;

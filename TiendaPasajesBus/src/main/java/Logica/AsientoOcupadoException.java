@@ -1,4 +1,4 @@
-package org.Logica;
+package Logica;
 
 public class AsientoOcupadoException extends Exception{
     public AsientoOcupadoException(String msgExcepcion){
