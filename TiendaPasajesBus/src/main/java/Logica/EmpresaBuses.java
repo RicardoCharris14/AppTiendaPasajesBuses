@@ -1,15 +1,18 @@
 package Logica;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EmpresaBuses {
-    private ArrayList<String> ciudadesAsociadas;
     private int nroBuses;
     private int capacidadBuses;
     private ArrayList<Bus> buses;
+    private ArrayList<String> ciudadesAsociadas;
+    private ArrayList<LocalDate> fechasViajes;
     public EmpresaBuses(int capacidadBuses){
         ciudadesAsociadas = new ArrayList<>();
+        fechasViajes = new ArrayList<>();
         nroBuses = 0;
         this.capacidadBuses = capacidadBuses;
         buses = new ArrayList<>();
@@ -18,6 +21,8 @@ public class EmpresaBuses {
         if(bus!=null && buses.size()<capacidadBuses){
             if(ciudadesAsociadas.contains(origen) && ciudadesAsociadas.contains(destino)){
                 nroBuses+=1;
+                LocalDate fechaSinHora = fecha.toLocalDate();
+                fechasViajes.add(fechaSinHora);
                 Recorrido recorrido= new Recorrido(origen,destino,fecha);
                 bus.setRecorrido(recorrido);
                 bus.setValorPasaje(precio);
@@ -58,5 +63,8 @@ public class EmpresaBuses {
 
     public ArrayList<String> getCiudadesAsociadas() {
         return ciudadesAsociadas;
+    }
+    public ArrayList<LocalDate> getFechasViajes(){
+        return fechasViajes;
     }
 }

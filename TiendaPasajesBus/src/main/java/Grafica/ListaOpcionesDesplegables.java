@@ -4,6 +4,7 @@ import Logica.EmpresaBuses;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ListaOpcionesDesplegables{
@@ -18,6 +19,10 @@ public class ListaOpcionesDesplegables{
         int NroCiudades = ciudades.size();
         String [] ciudadesOrigen = new String[NroCiudades+1];
         String [] ciudadesDestino = new String[NroCiudades+1];
+
+        ArrayList<LocalDate> fechasViajes = empresaBuses.getFechasViajes();
+        int NroFechas = fechasViajes.size();
+        String [] fechas = new String[NroFechas+1];
 
         ciudadesOrigen[0] = "Seleccione el destino del viaje";
         for(int i=1;i<=NroCiudades;i++){
@@ -39,8 +44,12 @@ public class ListaOpcionesDesplegables{
         Font tamanoLetraDestino = new Font("Arial", Font.PLAIN, 20);
         listaCiudadesDeDestino.setFont(tamanoLetraDestino);
 
-        String [] fecha = {"Seleccione la fecha del viaje"};
-        listaFechasViaje = new JComboBox(fecha);
+
+        fechas[0] = "Seleccione la fecha del viaje";
+        for(int i=1;i<=NroFechas;i++){
+            fechas[i] = fechasViajes.get(i-1).toString();
+        }
+        listaFechasViaje = new JComboBox(fechas);
         listaFechasViaje.setBounds(1050,340,300,50);
         listaFechasViaje.setMaximumRowCount(4);
         Font tamanoLetraFecha = new Font("Arial", Font.PLAIN, 20);

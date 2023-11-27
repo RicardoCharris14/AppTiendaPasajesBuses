@@ -1,12 +1,14 @@
 package Grafica;
 
+import Logica.EmpresaBuses;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Ventana extends JFrame {
 
-    public Ventana() {
-        PanelPrincipal panel = new PanelPrincipal();
+    public Ventana(EmpresaBuses empresaBuses) {
+        PanelPrincipal panel = new PanelPrincipal(empresaBuses);
         panel.setBounds(205, 85, 1500, 850);
 
         this.add(panel);
