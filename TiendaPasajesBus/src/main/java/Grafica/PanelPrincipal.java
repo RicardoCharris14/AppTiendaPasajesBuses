@@ -1,45 +1,27 @@
 package Grafica;
 
+import Logica.EmpresaBuses;
+
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
+    public PanelPrincipal(){
+        EmpresaBuses EME = new EmpresaBuses(5);
+        EME.addCiudadesAsociadas("Quellón");
+        EME.addCiudadesAsociadas("Villarica");
+        EME.addCiudadesAsociadas("Puerto Montt");
+        EME.addCiudadesAsociadas("Concepción");
+        EME.addCiudadesAsociadas("Santiago");
 
-    private Image emeBusChocado;
-    private Image emeBusLogo;
+        PanelEleccionTrayecto panel1 = new PanelEleccionTrayecto(EME);
+        PanelViajesDisponibles panel2 = new PanelViajesDisponibles();
+        PanelEleccionAsiento panel3 = new PanelEleccionAsiento();
 
-    public PanelPrincipal() {
+        this.add(panel1);
+        //this.add(panel2);
+        //this.add(panel3);
 
-        PanelFotoEncabezado fotoEncabezado = new PanelFotoEncabezado();
-        fotoEncabezado.setBounds(150, 30, 1200, 250);
-
-        emeBusChocado = new ImageIcon("src/main/java/Grafica/Imagenes/busemeChocado.png").getImage();
-        emeBusLogo = new ImageIcon("src/main/java/Grafica/Imagenes/emebusLogo.png").getImage();
-
-        ListaOpcionesDesplegables listaOrigenDestinoFecha = new ListaOpcionesDesplegables();
-
-        this.add(fotoEncabezado);
-        this.add(listaOrigenDestinoFecha.getListaCiudadesOrigen());
-        this.add(listaOrigenDestinoFecha.getListaCiudadesDeDestino());
-        this.add(listaOrigenDestinoFecha.getListaFechasViaje());
-        this.add(listaOrigenDestinoFecha.getBuscarViajes());
-
-
-        this.setBackground(Color.yellow);
-        this.setLayout(null);
-        this.setBounds(205, 85, 1500, 850);
-
-        repaint();
+        this.setLayout(new CardLayout());
     }
-
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        g.drawImage(emeBusChocado,75,500,500,300,this);
-        g.drawImage(emeBusLogo,900,370,500,500,this);
-
-    }
-
 }
-

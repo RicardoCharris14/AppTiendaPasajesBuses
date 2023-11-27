@@ -12,10 +12,12 @@ public class Pasaje {
     private String tipoBus;
     private int nroAsiento;
     private int pisoAsiento;
+    private int valorPasaje;
     public Pasaje(Cliente cliente, Bus bus, int nroAsiento){
         fechaSalida = bus.getRecorrido().getFechaSalida();
         origen = bus.getRecorrido().getOrigen();
         destino = bus.getRecorrido().getDestino();
+        valorPasaje = bus.getValorPasaje();
         nombreCliente = cliente.getNombre();
         rutCliente = cliente.getRut();
         tipoBus = bus.getTipoBus();
@@ -43,8 +45,8 @@ public class Pasaje {
                         "Numero de asiento: "+nroAsiento+"  |  Piso: "+piso+"\n"+
                         "----------------------------------------------\n" +
                         "Nombre: "+nombreCliente+"  |  Rut: "+rutCliente+"\n" +
-                        "Valor pasaje: "
-                        +"----------------------------------------------";
+                        "Valor pasaje: "+valorPasaje+"$\n"+
+                        "----------------------------------------------";
         return pasaje;
     }
 }

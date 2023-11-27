@@ -6,16 +6,10 @@ import java.awt.*;
 public class Ventana extends JFrame {
 
     public Ventana() {
-        PanelPrincipal panel1 = new PanelPrincipal();
+        PanelPrincipal panel = new PanelPrincipal();
+        panel.setBounds(205, 85, 1500, 850);
 
-        PanelViajesDisponibles panel2 = new PanelViajesDisponibles();
-        panel2.setBounds(205, 85, 1500, 850);
-
-        PanelEleccionAsiento panel3 = new PanelEleccionAsiento();
-
-        //this.add(panel1);
-        //this.add(panel2);
-        this.add(panel3);
+        this.add(panel);
 
         this.setLayout(null);
         this.setVisible(true);

@@ -1,25 +1,38 @@
 package Grafica;
 
+import Logica.EmpresaBuses;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ListaOpcionesDesplegables{
-
     private JComboBox listaCiudadesDeOrigen;
     private JComboBox listaCiudadesDeDestino;
     private JComboBox listaFechasViaje;
     private JButton buscarViajes;
 
 
-    public ListaOpcionesDesplegables() {
-        String [] ciudadesOrigen = {"Seleccione el origen del viaje", "Quellón", "Puerto Montt", "Villarrica", "Concepción", "Rancagua"};
+    public ListaOpcionesDesplegables(EmpresaBuses empresaBuses) {
+        ArrayList<String> ciudades = empresaBuses.getCiudadesAsociadas();
+        int NroCiudades = ciudades.size();
+        String [] ciudadesOrigen = new String[NroCiudades+1];
+        String [] ciudadesDestino = new String[NroCiudades+1];
+
+        ciudadesOrigen[0] = "Seleccione el destino del viaje";
+        for(int i=1;i<=NroCiudades;i++){
+            ciudadesOrigen[i]=ciudades.get(i-1);
+        }
         listaCiudadesDeOrigen = new JComboBox(ciudadesOrigen);
         listaCiudadesDeOrigen.setBounds(150,340,300,50);
         listaCiudadesDeOrigen.setMaximumRowCount(4);
         Font tamanoLetraOrigen = new Font("Arial", Font.PLAIN, 20);
         listaCiudadesDeOrigen.setFont(tamanoLetraOrigen);
 
-        String [] ciudadesDestino = {"Seleccione el destino del viaje", "Quellón", "Puerto Montt", "Villarrica", "Concepción", "Rancagua"};
+        ciudadesDestino[0] = "Seleccione el destino del viaje";
+        for(int i=1;i<=NroCiudades;i++){
+            ciudadesDestino[i]=ciudades.get(i-1);
+        }
         listaCiudadesDeDestino= new JComboBox(ciudadesDestino);
         listaCiudadesDeDestino.setBounds(600,340,310,50);
         listaCiudadesDeDestino.setMaximumRowCount(4);
