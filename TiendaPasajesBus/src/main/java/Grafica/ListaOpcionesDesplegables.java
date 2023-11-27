@@ -40,7 +40,6 @@ public class ListaOpcionesDesplegables{
         buscarViajes.setFont(tamanoLetraBuscarViajes);
         buscarViajes.setForeground(Color.blue);
         buscarViajes.setBackground(Color.white);
-
     }
 
     public JComboBox getListaCiudadesOrigen() {
