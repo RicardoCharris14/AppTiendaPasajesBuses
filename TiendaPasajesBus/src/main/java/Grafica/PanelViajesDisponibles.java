@@ -2,8 +2,10 @@ package Grafica;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class PanelViajesDisponibles extends JPanel {
+    JButton volver;
     public PanelViajesDisponibles(){
 
         JLabel titulo = new JLabel("VIAJES DISPONIBLES");
@@ -19,7 +21,7 @@ public class PanelViajesDisponibles extends JPanel {
         instruccion.setFont(fontInstruccion);
         instruccion.setBounds(115,120,600,20);
 
-        JButton volver = new JButton("VOLVER");
+        volver = new JButton("VOLVER");
         volver.setFocusPainted(false);
         volver.setBounds(30,20,100,50);
 
@@ -37,7 +39,9 @@ public class PanelViajesDisponibles extends JPanel {
         this.setBackground(Color.WHITE);
         this.setLayout(null);
     }
-
+    public void accionBtnVolver(ActionListener accion){
+        volver.addActionListener(accion);
+    }
     @Override
     public void paint(Graphics g) {
         super.paint(g);

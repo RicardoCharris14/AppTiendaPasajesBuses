@@ -31,6 +31,7 @@ public class PanelPrincipal extends JPanel {
         cardLayout.show(this,"panel1");
 
         accionBtnBuscarPasaje();
+        accionBtnVolverPanel2();
 
     }
     private void accionBtnBuscarPasaje(){
@@ -49,5 +50,14 @@ public class PanelPrincipal extends JPanel {
             }
         };
         panel1.accionBtnBuscarTrayecto(accion1);
+    }
+    private void accionBtnVolverPanel2(){
+        ActionListener accion2 = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cardLayout.show(esteObjeto,"panel1");
+            }
+        };
+        panel2.accionBtnVolver(accion2);
     }
 }
