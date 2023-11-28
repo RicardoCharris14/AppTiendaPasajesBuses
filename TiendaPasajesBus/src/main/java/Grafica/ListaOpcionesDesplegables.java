@@ -29,7 +29,7 @@ public class ListaOpcionesDesplegables{
             ciudadesOrigen[i]=ciudades.get(i-1);
         }
         listaCiudadesDeOrigen = new JComboBox(ciudadesOrigen);
-        listaCiudadesDeOrigen.setBounds(150,340,300,50);
+        listaCiudadesDeOrigen.setBounds(150,240,300,50);
         listaCiudadesDeOrigen.setMaximumRowCount(4);
         Font tamanoLetraOrigen = new Font("Arial", Font.PLAIN, 20);
         listaCiudadesDeOrigen.setFont(tamanoLetraOrigen);
@@ -39,7 +39,7 @@ public class ListaOpcionesDesplegables{
             ciudadesDestino[i]=ciudades.get(i-1);
         }
         listaCiudadesDeDestino= new JComboBox(ciudadesDestino);
-        listaCiudadesDeDestino.setBounds(600,340,310,50);
+        listaCiudadesDeDestino.setBounds(600,240,310,50);
         listaCiudadesDeDestino.setMaximumRowCount(4);
         Font tamanoLetraDestino = new Font("Arial", Font.PLAIN, 20);
         listaCiudadesDeDestino.setFont(tamanoLetraDestino);
@@ -50,7 +50,7 @@ public class ListaOpcionesDesplegables{
             fechas[i] = fechasViajes.get(i-1).toString();
         }
         listaFechasViaje = new JComboBox(fechas);
-        listaFechasViaje.setBounds(1050,340,300,50);
+        listaFechasViaje.setBounds(1050,240,300,50);
         listaFechasViaje.setMaximumRowCount(4);
         Font tamanoLetraFecha = new Font("Arial", Font.PLAIN, 20);
         listaFechasViaje.setFont(tamanoLetraFecha);

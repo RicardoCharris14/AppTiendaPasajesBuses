@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class PanelAsientosBus extends JPanel {
     public PanelAsientosBus() {
-        this.setBounds(100,50,400,700);
+        this.setBounds(100,110,320,530);
         this.setLayout(null);
         this.setBackground(Color.white);
         LineBorder borde = new LineBorder(Color.BLACK, 2, true);
@@ -33,22 +33,31 @@ public class PanelAsientosBus extends JPanel {
         int[] yPuntos = {140,310,310,160,160,0,0,160,160,360,360,310,310,140,310,310}; // Coordenadas y de los puntos
         int nPuntos = 16;
 
-        int factor= 4;
+        int factor = 6;
         for (int i = 0; i < xPuntos.length; i++) {
             xPuntos[i] =xPuntos[i] / factor;
             yPuntos[i] = yPuntos[i] / factor;
         }
 
-        int sumando= 50;
+        int sumandoX= 50;
+        int sumandoY= 30;
         for (int i = 0; i < xPuntos.length; i++) {
-            xPuntos[i] =xPuntos[i] + sumando;
-            yPuntos[i] =yPuntos[i] + sumando;
+            xPuntos[i] =xPuntos[i] + sumandoX;
+        }
+        for (int i = 0;  i < yPuntos.length; i++){
+            yPuntos[i] =yPuntos[i] + sumandoY;
         }
 
         g.setColor(Color.green);
         Polygon silla = new Polygon(xPuntos,yPuntos,nPuntos);
-        int numeroSillas= 12;
-        int sillasPorColumna = numeroSillas/3;
+        int numeroSillas= 17;
+        int sillasPorColumna;
+        if(numeroSillas%3==0){
+            sillasPorColumna = numeroSillas/3;
+        }
+        else{
+            sillasPorColumna = numeroSillas/3 +1;
+        }
         int numeroCiclo = 0;
         for (int i = 0; i<numeroSillas;i++){
             g.drawPolygon(silla);
@@ -57,9 +66,9 @@ public class PanelAsientosBus extends JPanel {
                 if(numeroCiclo ==2){
                     movePolygon(silla,60,0);
                 }
-                movePolygon(silla,100,-120 * sillasPorColumna);
+                movePolygon(silla,60,-80 * sillasPorColumna);
             }
-            movePolygon(silla,0,120);
+            movePolygon(silla,0,80);
         }
 
 

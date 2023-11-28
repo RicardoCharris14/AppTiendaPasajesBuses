@@ -12,10 +12,14 @@ public class PanelPrincipal extends JPanel {
         PanelViajesDisponibles panel2 = new PanelViajesDisponibles();
         PanelEleccionAsiento panel3 = new PanelEleccionAsiento();
 
-        this.add(panel1);
-        //this.add(panel2);
-        //this.add(panel3);
+        CardLayout cardLayout = new CardLayout();
+        this.setLayout(cardLayout);
 
-        this.setLayout(new CardLayout());
+        this.add(panel1,"panel1");
+        this.add(panel2,"panel2");
+        this.add(panel3,"panel3");
+
+        cardLayout.show(this,"panel1");
+
     }
 }

@@ -5,15 +5,14 @@ import java.awt.*;
 
 public class PanelEleccionAsiento extends JPanel {
 
-public PanelEleccionAsiento(){
+    public PanelEleccionAsiento(){
 
-    PanelAsientosBus fotoAsientosBus = new PanelAsientosBus();
+        PanelAsientosBus fotoAsientosBus = new PanelAsientosBus();
 
-    add(fotoAsientosBus);
+        add(fotoAsientosBus);
 
-    this.setBackground(Color.yellow);
-    this.setLayout(null);
-    this.setBounds(205, 85, 1500, 850);
+        this.setBackground(Color.yellow);
+        this.setLayout(null);
     }
 
     @Override

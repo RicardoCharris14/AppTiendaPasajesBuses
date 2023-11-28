@@ -13,7 +13,7 @@ public class PanelEleccionTrayecto extends JPanel {
     public PanelEleccionTrayecto(EmpresaBuses empresaBuses) {
 
         PanelFotoEncabezado fotoEncabezado = new PanelFotoEncabezado();
-        fotoEncabezado.setBounds(150, 30, 1200, 250);
+        fotoEncabezado.setBounds(120, 30, 1200, 180);
 
         ListaOpcionesDesplegables listaOrigenDestinoFecha = new ListaOpcionesDesplegables(empresaBuses);
 
@@ -29,18 +29,14 @@ public class PanelEleccionTrayecto extends JPanel {
 
         this.setBackground(Color.yellow);
         this.setLayout(null);
-        this.setBounds(205, 85, 1500, 850);
-
-        repaint();
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(emeBusChocado,75,500,500,300,this);
-        g.drawImage(emeBusLogo,900,370,500,500,this);
+        g.drawImage(emeBusChocado,60,370,500,300,this);
+        g.drawImage(emeBusLogo,900,260,500,500,this);
 
     }
 
 }
-
