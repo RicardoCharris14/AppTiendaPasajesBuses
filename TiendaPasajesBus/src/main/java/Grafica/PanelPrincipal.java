@@ -44,8 +44,10 @@ public class PanelPrincipal extends JPanel {
                 if(!seleccionOrigen.equals("Seleccione origen del viaje") &&
                         !seleccionDestino.equals("Seleccione destino del viaje") &&
                         !seleccionFecha.equals("Seleccione la fecha del viaje")){
-                    empresaBuses.filtrarBuses(seleccionOrigen,seleccionDestino,seleccionFecha);
-                    cardLayout.show(esteObjeto,"panel2");
+                    if(!seleccionOrigen.equals(seleccionDestino)){
+                        empresaBuses.filtrarBuses(seleccionOrigen,seleccionDestino,seleccionFecha);
+                        cardLayout.show(esteObjeto,"panel2");
+                    }
                 }
             }
         };
