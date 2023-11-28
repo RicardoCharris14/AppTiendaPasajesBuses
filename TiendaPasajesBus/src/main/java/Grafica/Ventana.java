@@ -17,6 +17,7 @@ public class Ventana extends JFrame {
         this.setVisible(true);
         this.setTitle("Pasaje de buses");
         this.setSize(1200,800);
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.blue);

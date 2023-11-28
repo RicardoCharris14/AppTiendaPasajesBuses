@@ -8,9 +8,11 @@ public class EmpresaBuses {
     private int nroBuses;
     private int capacidadBuses;
     private ArrayList<Bus> buses;
+    private ArrayList<Bus> busesSolicitados;
     private ArrayList<String> ciudadesAsociadas;
     private ArrayList<LocalDate> fechasViajes;
     public EmpresaBuses(int capacidadBuses){
+        busesSolicitados = new ArrayList<>();
         ciudadesAsociadas = new ArrayList<>();
         fechasViajes = new ArrayList<>();
         nroBuses = 0;
@@ -46,7 +48,7 @@ public class EmpresaBuses {
                     return pasaje;
                 }
                 else{
-                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no está disponible.\n");
+                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no estÃ¡ disponible.\n");
                 }
             }
             else{
@@ -56,6 +58,20 @@ public class EmpresaBuses {
         else{
             return null;
         }
+    }
+    public void filtrarBuses(String origen, String destino, String fecha) {
+        busesSolicitados.clear();
+
+        for(Bus bus : buses){
+            if(bus.getRecorrido().getOrigen().equals(origen) &&
+                    bus.getRecorrido().getDestino().equals(destino) &&
+                    bus.getRecorrido().getFechaSalida().toLocalDate().toString().equals(fecha)){
+                busesSolicitados.add(bus);
+            }
+        }
+    }
+    public ArrayList<Bus> getBusesSolicitados(){
+        return busesSolicitados;
     }
     public void addCiudadesAsociadas(String ciudad){
         ciudadesAsociadas.add(ciudad);
