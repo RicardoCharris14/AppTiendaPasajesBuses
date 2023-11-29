@@ -18,7 +18,7 @@ public class PanelPrincipal extends JPanel {
         this.empresaBuses = empresaBuses;
 
         panel1 = new PanelEleccionTrayecto(empresaBuses);
-        panel2 = new PanelViajesDisponibles();
+        panel2 = new PanelViajesDisponibles(empresaBuses);
         panel3 = new PanelEleccionAsiento();
 
         cardLayout = new CardLayout();
@@ -44,8 +44,11 @@ public class PanelPrincipal extends JPanel {
                 if(!seleccionOrigen.equals("Seleccione origen del viaje") &&
                         !seleccionDestino.equals("Seleccione destino del viaje") &&
                         !seleccionFecha.equals("Seleccione la fecha del viaje")){
-                    empresaBuses.filtrarBuses(seleccionOrigen,seleccionDestino,seleccionFecha);
-                    cardLayout.show(esteObjeto,"panel2");
+                    if(!seleccionOrigen.equals(seleccionDestino)){
+                        empresaBuses.filtrarBuses(seleccionOrigen,seleccionDestino,seleccionFecha);
+                        cardLayout.show(esteObjeto,"panel2");
+                        panel2.crearProgramacionBus(empresaBuses.getBusesSolicitados().size());
+                    }
                 }
             }
         };

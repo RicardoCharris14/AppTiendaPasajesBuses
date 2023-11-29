@@ -1,12 +1,19 @@
 package Grafica;
 
+import Logica.Bus;
+import Logica.EmpresaBuses;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class PanelViajesDisponibles extends JPanel {
+    private EmpresaBuses empresaBuses;
+    private int numeroViajes;
     JButton volver;
-    public PanelViajesDisponibles(){
+    public PanelViajesDisponibles(EmpresaBuses empresaBuses){
+        this.empresaBuses = empresaBuses;
+        numeroViajes = 0;
 
         JLabel titulo = new JLabel("VIAJES DISPONIBLES");
         Font fontTitulo = new Font("Arial", Font.ITALIC,50);
@@ -21,16 +28,11 @@ public class PanelViajesDisponibles extends JPanel {
         instruccion.setFont(fontInstruccion);
         instruccion.setBounds(115,120,600,20);
 
+
+
         volver = new JButton("VOLVER");
         volver.setFocusPainted(false);
         volver.setBounds(30,20,100,50);
-
-        for(int i=0;i<4;i++){
-            JButton botonBus = new JButton("Comprar");
-            botonBus.setBounds(1200,160+130*i,150,100);
-            botonBus.setFocusPainted(false);
-            this.add(botonBus);
-        }
 
         this.add(titulo);
         this.add(instruccion);
@@ -46,9 +48,36 @@ public class PanelViajesDisponibles extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.BLACK);
-        for(int i=0 ; i<4 ; i++){
+        for(int i=0 ; i<empresaBuses.getBusesSolicitados().size() ; i++){
             g.drawRect(115 ,160+130*i,1235,100);
         }
+    }
+    public void crearProgramacionBus(int numeroViajes){
+        for(int i=0;i<this.numeroViajes*2;i++){
+            this.remove(3);
+        }
+        for(int i=0;i<numeroViajes;i++){
+            JButton botonComprarBus = new JButton("Comprar");
+            botonComprarBus.setBounds(1200,160+130*i,150,100);
+            botonComprarBus.setFocusPainted(false);
+            this.add(botonComprarBus);
 
+            JLabel programacionBus = getJLabel(i);
+            programacionBus.setBounds(150,160+130*i,1050,100);
+            this.add(programacionBus);
+
+        }
+        this.numeroViajes = numeroViajes;
+    }
+
+    private JLabel getJLabel(int i) {
+        Bus busDisponible = empresaBuses.getBusesSolicitados().get(i);
+        String programacion = "Tipo Bus: "+busDisponible.getTipoBus()+"  |  Horario salida: "
+                +busDisponible.getRecorrido().getFechaSalida().toLocalTime().toString()+"  | Nro. Pisos: "+
+                busDisponible.getPisos().getNroPisos()+"  |  Precio: "+busDisponible.getValorPasaje();
+        JLabel programacionBus = new JLabel(programacion);
+        Font fontProgramacionBus = new Font("Arial", Font.BOLD, 20);
+        programacionBus.setFont(fontProgramacionBus);
+        return programacionBus;
     }
 }

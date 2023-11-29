@@ -9,7 +9,11 @@ public class Main {
     public static void main(String[] args) {
         BusPremium bus1 = new BusPremium(new DosPisos(10,15));
         BusSalonCama bus2 = new BusSalonCama(new UnPiso(20));
-        EmpresaBuses EME = new EmpresaBuses(3);
+        BusPremium bus3 = new BusPremium(new DosPisos(10,15));
+        BusPremium bus4 = new BusPremium(new DosPisos(10,15));
+        BusPremium bus5 = new BusPremium(new DosPisos(10,15));
+        BusPremium bus6 = new BusPremium(new DosPisos(10,15));
+        EmpresaBuses EME = new EmpresaBuses(10);
 
         EME.addCiudadesAsociadas("Quellón");
         EME.addCiudadesAsociadas("Concepción");
@@ -18,6 +22,11 @@ public class Main {
 
         EME.agregarBus(bus1, "Quellón","Concepción",LocalDateTime.of(2023,Month.JUNE,14,12,35),50000);
         EME.agregarBus(bus2,"Villarica","Concepción",LocalDateTime.of(2023,Month.JUNE,25,18,45),30000);
+        EME.agregarBus(bus3, "Quellón","Concepción",LocalDateTime.of(2023,Month.JUNE,14,15,30),55000);
+        EME.agregarBus(bus4, "Quellón","Concepción",LocalDateTime.of(2023,Month.JUNE,14,7, 0),40000);
+        EME.agregarBus(bus5, "Quellón","Concepción",LocalDateTime.of(2023,Month.JUNE,14,22,15),60000);
+        EME.agregarBus(bus6, "Quellón","Concepción",LocalDateTime.of(2023,Month.JUNE,14,23,59),70000);
+
 
         Ventana ventana = new Ventana(EME);
 

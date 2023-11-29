@@ -17,18 +17,40 @@ public class EmpresaBuses {
         fechasViajes = new ArrayList<>();
         nroBuses = 0;
         this.capacidadBuses = capacidadBuses;
+
         buses = new ArrayList<>();
     }
     public void agregarBus(Bus bus, String origen, String destino, LocalDateTime fecha, int precio){
+        Boolean fechaExiste = false;
+        int contadorBusesIgualDia = 0;
         if(bus!=null && buses.size()<capacidadBuses){
             if(ciudadesAsociadas.contains(origen) && ciudadesAsociadas.contains(destino)){
-                nroBuses+=1;
-                LocalDate fechaSinHora = fecha.toLocalDate();
-                fechasViajes.add(fechaSinHora);
-                Recorrido recorrido= new Recorrido(origen,destino,fecha);
-                bus.setRecorrido(recorrido);
-                bus.setValorPasaje(precio);
-                buses.add(bus);
+                for(Bus bus1 : buses){
+                    if(bus1.getRecorrido().getOrigen().equals(origen) &&
+                            bus1.getRecorrido().getDestino().equals(destino) &&
+                            bus1.getRecorrido().getFechaSalida().toLocalDate().toString().equals(fecha.toLocalDate().toString())){
+                        contadorBusesIgualDia +=1;
+                    }
+                }
+                if(contadorBusesIgualDia<4){
+                    nroBuses+=1;
+                    LocalDate fechaSinHora = fecha.toLocalDate();
+                    Recorrido recorrido= new Recorrido(origen,destino,fecha);
+                    bus.setRecorrido(recorrido);
+                    bus.setValorPasaje(precio);
+                    buses.add(bus);
+                    for(LocalDate fechaNoHora : fechasViajes){
+                        if(fechaNoHora.toString().equals(fechaSinHora.toString())){
+                            fechaExiste=true;
+                            break;
+                        }
+                    }
+                    if(!fechaExiste){
+                        fechasViajes.add(fechaSinHora);
+                    }
+                }else{
+                    System.out.println("\nNo pueden haber mas buses desde "+origen+" hacia "+destino+" en la fecha indicada.");
+                }
             }
 
         }
@@ -48,7 +70,7 @@ public class EmpresaBuses {
                     return pasaje;
                 }
                 else{
-                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no estÃ¡ disponible.\n");
+                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no está disponible.\n");
                 }
             }
             else{

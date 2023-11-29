@@ -45,4 +45,9 @@ public class DosPisos implements Pisos {
     public int getNroAsientosPiso2() {
         return nroAsientosPiso2;
     }
+
+    @Override
+    public int getNroPisos() {
+        return 2;
+    }
 }

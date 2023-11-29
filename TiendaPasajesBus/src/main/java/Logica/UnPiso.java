@@ -32,4 +32,8 @@ public class UnPiso implements Pisos {
     public int getNroAsientosPiso2(){
         return 0;
     }
+    @Override
+    public int getNroPisos(){
+        return 1;
+    }
 }
