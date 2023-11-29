@@ -11,8 +11,8 @@ public class PanelViajesDisponibles extends JPanel {
     private EmpresaBuses empresaBuses;
     private int numeroViajes;
     JButton volver;
-    public PanelViajesDisponibles(EmpresaBuses empresaBuses){
-        this.empresaBuses = empresaBuses;
+    public PanelViajesDisponibles(){
+        this.empresaBuses = EmpresaBuses.getEmpresaBuses(0);
         numeroViajes = 0;
 
         JLabel titulo = new JLabel("VIAJES DISPONIBLES");

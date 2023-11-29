@@ -14,11 +14,11 @@ public class PanelPrincipal extends JPanel {
     PanelEleccionTrayecto panel1;
     PanelViajesDisponibles panel2;
     PanelEleccionAsiento panel3;
-    public PanelPrincipal(EmpresaBuses empresaBuses){
-        this.empresaBuses = empresaBuses;
+    public PanelPrincipal(){
+        this.empresaBuses = EmpresaBuses.getEmpresaBuses(0);
 
-        panel1 = new PanelEleccionTrayecto(empresaBuses);
-        panel2 = new PanelViajesDisponibles(empresaBuses);
+        panel1 = new PanelEleccionTrayecto();
+        panel2 = new PanelViajesDisponibles();
         panel3 = new PanelEleccionAsiento();
 
         cardLayout = new CardLayout();

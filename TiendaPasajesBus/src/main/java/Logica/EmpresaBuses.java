@@ -5,13 +5,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EmpresaBuses {
+    private static EmpresaBuses instancia;
     private int nroBuses;
     private int capacidadBuses;
     private ArrayList<Bus> buses;
     private ArrayList<Bus> busesSolicitados;
     private ArrayList<String> ciudadesAsociadas;
     private ArrayList<LocalDate> fechasViajes;
-    public EmpresaBuses(int capacidadBuses){
+    private EmpresaBuses(int capacidadBuses){
         busesSolicitados = new ArrayList<>();
         ciudadesAsociadas = new ArrayList<>();
         fechasViajes = new ArrayList<>();
@@ -104,5 +105,12 @@ public class EmpresaBuses {
     }
     public ArrayList<LocalDate> getFechasViajes(){
         return fechasViajes;
+    }
+
+    public static EmpresaBuses getEmpresaBuses(int capacidadBuses) {
+        if (instancia == null) {
+            instancia = new EmpresaBuses(capacidadBuses);
+        }
+        return instancia;
     }
 }

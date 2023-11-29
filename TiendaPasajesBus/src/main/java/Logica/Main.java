@@ -7,13 +7,14 @@ import java.time.Month;
 
 public class Main {
     public static void main(String[] args) {
+        EmpresaBuses EME = EmpresaBuses.getEmpresaBuses(10);
+
         BusPremium bus1 = new BusPremium(new DosPisos(10,15));
         BusSalonCama bus2 = new BusSalonCama(new UnPiso(20));
         BusPremium bus3 = new BusPremium(new DosPisos(10,15));
         BusPremium bus4 = new BusPremium(new DosPisos(10,15));
         BusPremium bus5 = new BusPremium(new DosPisos(10,15));
         BusPremium bus6 = new BusPremium(new DosPisos(10,15));
-        EmpresaBuses EME = new EmpresaBuses(10);
 
         EME.addCiudadesAsociadas("Quellón");
         EME.addCiudadesAsociadas("Concepción");
@@ -27,14 +28,13 @@ public class Main {
         EME.agregarBus(bus5, "Quellón","Concepción",LocalDateTime.of(2023,Month.JUNE,14,22,15),60000);
         EME.agregarBus(bus6, "Quellón","Concepción",LocalDateTime.of(2023,Month.JUNE,14,23,59),70000);
 
-
-        Ventana ventana = new Ventana(EME);
-
         Cliente ricardo = new Cliente("Ricardo Charris", "22.066.527-5");
         System.out.println("El pasaje de ricardo es: \n");
         ricardo.comprarPasaje(EME,1,11);
         Cliente vicente = new Cliente("Vicente Ramirez","21.311.079-9");
         System.out.println("El pasaje de Vicente es: \n");
         vicente.comprarPasaje(EME,2,11);
+
+        Ventana ventana = new Ventana();
     }
 }
