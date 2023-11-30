@@ -8,11 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class PanelViajesDisponibles extends JPanel {
-    private EmpresaBuses empresaBuses;
     private int numeroViajes;
     JButton volver;
     public PanelViajesDisponibles(){
-        this.empresaBuses = EmpresaBuses.getEmpresaBuses(0);
         numeroViajes = 0;
 
         JLabel titulo = new JLabel("VIAJES DISPONIBLES");
@@ -48,30 +46,32 @@ public class PanelViajesDisponibles extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.BLACK);
-        for(int i=0 ; i<empresaBuses.getBusesSolicitados().size() ; i++){
+        for(int i=0 ; i<EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().size() ; i++){
             g.drawRect(115 ,160+130*i,1235,100);
         }
     }
-    public void crearProgramacionBus(int numeroViajes){
+    public void crearProgramacionBus(ActionListener accion){
+        JButton botonComprarBus = new JButton("Comprar");
+        botonComprarBus.setBounds(1200,160+130*numeroViajes,150,100);
+        botonComprarBus.setFocusPainted(false);
+        botonComprarBus.addActionListener(accion);
+        this.add(botonComprarBus);
+
+        JLabel programacionBus = getJLabel(numeroViajes);
+        programacionBus.setBounds(150,160+130*numeroViajes,1050,100);
+        this.add(programacionBus);
+
+        this.numeroViajes +=1;
+    }
+    public void eliminarProgramacionBus(){
         for(int i=0;i<this.numeroViajes*2;i++){
             this.remove(3);
         }
-        for(int i=0;i<numeroViajes;i++){
-            JButton botonComprarBus = new JButton("Comprar");
-            botonComprarBus.setBounds(1200,160+130*i,150,100);
-            botonComprarBus.setFocusPainted(false);
-            this.add(botonComprarBus);
-
-            JLabel programacionBus = getJLabel(i);
-            programacionBus.setBounds(150,160+130*i,1050,100);
-            this.add(programacionBus);
-
-        }
-        this.numeroViajes = numeroViajes;
+        numeroViajes = 0;
     }
 
     private JLabel getJLabel(int i) {
-        Bus busDisponible = empresaBuses.getBusesSolicitados().get(i);
+        Bus busDisponible = EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().get(i);
         String programacion = "Tipo Bus: "+busDisponible.getTipoBus()+"  |  Horario salida: "
                 +busDisponible.getRecorrido().getFechaSalida().toLocalTime().toString()+"  | Nro. Pisos: "+
                 busDisponible.getPisos().getNroPisos()+"  |  Precio: "+busDisponible.getValorPasaje();

@@ -6,20 +6,50 @@ import java.util.ArrayList;
 
 public class EmpresaBuses {
     private static EmpresaBuses instancia;
-    private int nroBuses;
     private int capacidadBuses;
-    private ArrayList<Bus> buses;
-    private ArrayList<Bus> busesSolicitados;
     private ArrayList<String> ciudadesAsociadas;
     private ArrayList<LocalDate> fechasViajes;
+    private ArrayList<Bus> buses;
+    private ArrayList<Bus> busesSolicitados;
+    private Bus busSolicitado;
+    private int nroBuses;
     private EmpresaBuses(int capacidadBuses){
-        busesSolicitados = new ArrayList<>();
+        this.capacidadBuses = capacidadBuses;
         ciudadesAsociadas = new ArrayList<>();
         fechasViajes = new ArrayList<>();
-        nroBuses = 0;
-        this.capacidadBuses = capacidadBuses;
-
         buses = new ArrayList<>();
+        busesSolicitados = new ArrayList<>();
+        busSolicitado=null;
+        nroBuses = 0;
+    }
+    public static EmpresaBuses getEmpresaBuses(int capacidadBuses) {
+        if (instancia == null) {
+            instancia = new EmpresaBuses(capacidadBuses);
+        }
+        return instancia;
+    }
+    public Pasaje comprarPasaje(Cliente cliente, int nroBus, int nroAsiento)throws AsientoOcupadoException{
+        if(nroBus>0 && nroBus<=nroBuses){
+            Bus busSolicitado = buses.get(nroBus-1);
+            Asiento asientoSolicitado = busSolicitado.getAsiento(nroAsiento);
+            if(asientoSolicitado!= null){
+                if(asientoSolicitado.getDisponible()){
+                    asientoSolicitado.setDisponible(false);
+                    Pasaje pasaje = new Pasaje(cliente, busSolicitado, asientoSolicitado.getNumAsiento());
+                    System.out.println(pasaje.emitirPasaje());
+                    return pasaje;
+                }
+                else{
+                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no estÃ¡ disponible.\n");
+                }
+            }
+            else{
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
     }
     public void agregarBus(Bus bus, String origen, String destino, LocalDateTime fecha, int precio){
         Boolean fechaExiste = false;
@@ -59,29 +89,6 @@ public class EmpresaBuses {
     public void retirarBus(int nroBus){
         buses.remove(nroBus-1);
     }
-    public Pasaje comprarPasaje(Cliente cliente, int nroBus, int nroAsiento)throws AsientoOcupadoException{
-        if(nroBus>0 && nroBus<=nroBuses){
-            Bus busSolicitado = buses.get(nroBus-1);
-            Asiento asientoSolicitado = busSolicitado.getAsiento(nroAsiento);
-            if(asientoSolicitado!= null){
-                if(asientoSolicitado.getDisponible()){
-                    asientoSolicitado.setDisponible(false);
-                    Pasaje pasaje = new Pasaje(cliente, busSolicitado, asientoSolicitado.getNumAsiento());
-                    System.out.println(pasaje.emitirPasaje());
-                    return pasaje;
-                }
-                else{
-                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no está disponible.\n");
-                }
-            }
-            else{
-                return null;
-            }
-        }
-        else{
-            return null;
-        }
-    }
     public void filtrarBuses(String origen, String destino, String fecha) {
         busesSolicitados.clear();
 
@@ -92,6 +99,12 @@ public class EmpresaBuses {
                 busesSolicitados.add(bus);
             }
         }
+    }
+    public void elejirBus(int eleccion){
+        busSolicitado = busesSolicitados.get(eleccion-1);
+    }
+    public Bus getBusSolicitado(){
+        return busSolicitado;
     }
     public ArrayList<Bus> getBusesSolicitados(){
         return busesSolicitados;
@@ -105,12 +118,5 @@ public class EmpresaBuses {
     }
     public ArrayList<LocalDate> getFechasViajes(){
         return fechasViajes;
-    }
-
-    public static EmpresaBuses getEmpresaBuses(int capacidadBuses) {
-        if (instancia == null) {
-            instancia = new EmpresaBuses(capacidadBuses);
-        }
-        return instancia;
     }
 }

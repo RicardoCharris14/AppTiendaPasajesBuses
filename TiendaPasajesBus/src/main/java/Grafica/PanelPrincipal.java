@@ -8,15 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelPrincipal extends JPanel {
-    EmpresaBuses empresaBuses;
     private CardLayout cardLayout;
     PanelPrincipal esteObjeto = this;
     PanelEleccionTrayecto panel1;
     PanelViajesDisponibles panel2;
     PanelEleccionAsiento panel3;
     public PanelPrincipal(){
-        this.empresaBuses = EmpresaBuses.getEmpresaBuses(0);
-
         panel1 = new PanelEleccionTrayecto();
         panel2 = new PanelViajesDisponibles();
         panel3 = new PanelEleccionAsiento();
@@ -32,7 +29,6 @@ public class PanelPrincipal extends JPanel {
 
         accionBtnBuscarPasaje();
         accionBtnVolverPanel2();
-
     }
     private void accionBtnBuscarPasaje(){
         ActionListener accion1 = new ActionListener() {
@@ -45,9 +41,14 @@ public class PanelPrincipal extends JPanel {
                         !seleccionDestino.equals("Seleccione destino del viaje") &&
                         !seleccionFecha.equals("Seleccione la fecha del viaje")){
                     if(!seleccionOrigen.equals(seleccionDestino)){
-                        empresaBuses.filtrarBuses(seleccionOrigen,seleccionDestino,seleccionFecha);
+                        EmpresaBuses.getEmpresaBuses(0).filtrarBuses(seleccionOrigen,seleccionDestino,seleccionFecha);
+                        int numBusesSolicitados = EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().size();
+                        panel2.eliminarProgramacionBus();
+                        for(int i=1; i<=numBusesSolicitados; i++){
+                            panel2.crearProgramacionBus(accionBtnsComprarPanel2(i));
+                        }
                         cardLayout.show(esteObjeto,"panel2");
-                        panel2.crearProgramacionBus(empresaBuses.getBusesSolicitados().size());
+
                     }
                 }
             }
@@ -62,5 +63,16 @@ public class PanelPrincipal extends JPanel {
             }
         };
         panel2.accionBtnVolver(accion2);
+    }
+    private ActionListener accionBtnsComprarPanel2(int busSolicitado){
+        ActionListener accion3 = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                EmpresaBuses.getEmpresaBuses(0).elejirBus(busSolicitado);
+                System.out.println(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getRecorrido().getDatosRecorrido());
+                cardLayout.show(esteObjeto,"panel3");
+            }
+        };
+        return accion3;
     }
 }
