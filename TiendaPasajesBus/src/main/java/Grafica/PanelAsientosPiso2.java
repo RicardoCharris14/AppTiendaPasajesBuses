@@ -1,20 +1,19 @@
 package Grafica;
 
+import Logica.EmpresaBuses;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class PanelAsientosBus extends JPanel {
-    public PanelAsientosBus() {
+public class PanelAsientosPiso2 extends JPanel {
+    public PanelAsientosPiso2(){
         this.setBounds(100,110,320,530);
         this.setLayout(null);
         this.setBackground(Color.white);
         LineBorder borde = new LineBorder(Color.BLACK, 2, true);
         this.setBorder(borde);
-
-
     }
-
     private static void movePolygon(Polygon polygon, int xOffset, int yOffset) {
         // Obtener el número de vértices del polígono
         int numVertices = polygon.npoints;
@@ -41,6 +40,7 @@ public class PanelAsientosBus extends JPanel {
 
         int sumandoX= 50;
         int sumandoY= 30;
+
         for (int i = 0; i < xPuntos.length; i++) {
             xPuntos[i] =xPuntos[i] + sumandoX;
         }
@@ -50,7 +50,7 @@ public class PanelAsientosBus extends JPanel {
 
         g.setColor(Color.green);
         Polygon silla = new Polygon(xPuntos,yPuntos,nPuntos);
-        int numeroSillas= 17;
+        int numeroSillas = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().getNroAsientosPiso2();
         int sillasPorColumna;
         if(numeroSillas%3==0){
             sillasPorColumna = numeroSillas/3;
@@ -70,10 +70,5 @@ public class PanelAsientosBus extends JPanel {
             }
             movePolygon(silla,0,80);
         }
-
-
-
-
-
     }
 }
