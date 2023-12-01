@@ -3,16 +3,12 @@ package Grafica;
 import Logica.EmpresaBuses;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class PanelAsientosPiso2 extends JPanel {
     public PanelAsientosPiso2(){
-        this.setBounds(100,110,320,530);
         this.setLayout(null);
         this.setBackground(Color.white);
-        LineBorder borde = new LineBorder(Color.BLACK, 2, true);
-        this.setBorder(borde);
     }
     private static void movePolygon(Polygon polygon, int xOffset, int yOffset) {
         // Obtener el número de vértices del polígono

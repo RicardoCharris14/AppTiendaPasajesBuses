@@ -10,7 +10,6 @@ public class PanelAsientosPiso1 extends JPanel {
         this.setLayout(null);
         this.setBackground(Color.white);
     }
-
     private static void movePolygon(Polygon polygon, int xOffset, int yOffset) {
         // Obtener el número de vértices del polígono
         int numVertices = polygon.npoints;

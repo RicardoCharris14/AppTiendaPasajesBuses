@@ -18,11 +18,16 @@ public class PanelAsientos extends JPanel {
         this.add(piso1,"piso1");
         this.add(piso2,"piso2");
 
-        this.setBounds(70,110,320,530);
+        this.setBounds(150,110,320,530);
         this.setBackground(Color.white);
         LineBorder borde = new LineBorder(Color.BLACK, 2, true);
         this.setBorder(borde);
         cardLayout.show(this,"piso1");
     }
-
+    public void mostrarPiso1(){
+        cardLayout.show(this,"piso1");
+    }
+    public void mostrarPiso2(){
+        cardLayout.show(this,"piso2");
+    }
 }
