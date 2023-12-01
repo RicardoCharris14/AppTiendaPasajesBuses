@@ -7,7 +7,7 @@ public class UnPiso implements Pisos {
     private int nroAsientos;
     public UnPiso(int nroAsientos){
         asientosPiso1 = new ArrayList<>();
-        this.nroAsientos = nroAsientos;
+        this.nroAsientos = Math.min(nroAsientos,18);
     }
     @Override
     public void addAsiento(Asiento asiento, int pisoAsiento){

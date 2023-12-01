@@ -10,8 +10,8 @@ public class DosPisos implements Pisos {
     public DosPisos(int nroAsientosPiso1, int nroAsientosPiso2){
         asientosPiso1 = new ArrayList<>();
         asientosPiso2 = new ArrayList<>();
-        this.nroAsientosPiso1 = nroAsientosPiso1;
-        this.nroAsientosPiso2 = nroAsientosPiso2;
+        this.nroAsientosPiso1 = Math.min(nroAsientosPiso1,18);
+        this.nroAsientosPiso2 = Math.min(nroAsientosPiso2,18);
     }
 
     @Override
