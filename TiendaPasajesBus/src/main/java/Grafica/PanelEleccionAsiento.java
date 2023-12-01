@@ -1,6 +1,7 @@
 package Grafica;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -21,32 +22,37 @@ public class PanelEleccionAsiento extends JPanel {
         volver.setFocusPainted(false);
 
         JLabel disponible = new JLabel("Disponible");
-        Font fontDisponible = new Font("Arial", Font.ITALIC,23);
+        Font fontDisponible = new Font("Arial", Font.ITALIC,26);
         disponible.setFont(fontDisponible);
         disponible.setForeground(Color.black);
-        disponible.setBounds(600,280,140,50);
+        disponible.setBounds(590    ,280,140,50);
 
         JLabel ocupado = new JLabel("Ocupado");
-        Font fontDisponible1 = new Font("Arial", Font.ITALIC,23);
+        Font fontDisponible1 = new Font("Arial", Font.ITALIC,26);
         ocupado.setFont(fontDisponible1);
         ocupado.setForeground(Color.black);
         ocupado.setBounds(850,280,140,50);
 
         JLabel seleccionado = new JLabel("Asiento Seleccionado");
-        Font fontDisponible2 = new Font("Arial", Font.ITALIC,23);
+        Font fontDisponible2 = new Font("Arial", Font.ITALIC,26);
         seleccionado.setFont(fontDisponible2);
         seleccionado.setForeground(Color.black);
         seleccionado.setBounds(1035 ,280,300,50);
 
-
-
+        pagar = new JButton("Pagar");
+        Font fontPagar = new Font("Arial Black", Font.BOLD, 35);
+        pagar.setFont(fontPagar);
+        pagar.setForeground(Color.blue);
+        pagar.setBorder(new BevelBorder(BevelBorder.RAISED));
+        pagar.setBounds(760 ,520,300,85);
+        pagar.setFocusPainted(false);
 
         this.add(asientos);
         this.add(volver);
         this.add(disponible);
         this.add(ocupado);
         this.add(seleccionado);
-
+        this.add(pagar);
 
         this.setLayout(null);
         this.setBackground(Color.yellow);
@@ -106,7 +112,6 @@ public class PanelEleccionAsiento extends JPanel {
             yPuntos[i] = yPuntos[i] + sumandoY;
             yPuntos1[i] = yPuntos1[i] + sumandoY;
             yPuntos2[i] = yPuntos2[i] + sumandoY;
-
         }
 
         g.setColor(Color.green);
@@ -125,8 +130,9 @@ public class PanelEleccionAsiento extends JPanel {
     public void crearBtnPiso1(ActionListener accion){
         if(cantidadPisos==2){
             piso1 = new JButton("Piso 1");
-            Font fontPiso1 = new Font("Arial", Font.BOLD, 20);
+            Font fontPiso1 = new Font("Arial", Font.BOLD, 30);
             piso1.setFont(fontPiso1);
+            piso1.setBorder(new BevelBorder(BevelBorder.RAISED));
             piso1.setBounds(735,380,150,75);
             piso1.setFocusPainted(false);
             piso1.addActionListener(accion);
@@ -136,16 +142,20 @@ public class PanelEleccionAsiento extends JPanel {
     }
     public void crearBtnPiso2(ActionListener accion){
         if(cantidadPisos==2){
-            piso2 = new JButton("Piso2");
-            Font fontPiso2 = new Font("Arial", Font.BOLD, 20);
+            piso2 = new JButton("Piso 2");
+            Font fontPiso2 = new Font("Arial", Font.BOLD, 30);
             piso2.setFont(fontPiso2);
+            piso2.setBorder(new BevelBorder(BevelBorder.RAISED));
             piso2.setBounds(935,380,150,75);
             piso2.setFocusPainted(false);
             piso2.addActionListener(accion);
             this.add(piso2);
         }
     }
-    
+    public void accionBtnPagar(ActionListener accion){
+        pagar.addActionListener(accion);
+    }
+
     public void eliminarBtnsPiso(){
         int nroComponentes = this.getComponentCount();
         for(int i=0;i<nroComponentes-8;i++){

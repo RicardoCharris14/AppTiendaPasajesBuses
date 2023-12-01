@@ -3,6 +3,7 @@ package Grafica;
 import Logica.EmpresaBuses;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -55,11 +56,13 @@ public class ListaOpcionesDesplegables{
         Font tamanoLetraFecha = new Font("Arial", Font.PLAIN, 20);
         fechasViaje.setFont(tamanoLetraFecha);
 
+
         BtnBuscarViajes = new JButton("Buscar viajes");
-        BtnBuscarViajes.setBounds(600,600,280,70);
+        BtnBuscarViajes.setBounds(600,450,280,70);
         BtnBuscarViajes.setFocusPainted(false);
         Font tamanoLetraBuscarViajes = new Font("Cooper black",Font.PLAIN,24);
         BtnBuscarViajes.setFont(tamanoLetraBuscarViajes);
+        BtnBuscarViajes.setBorder(new BevelBorder(BevelBorder.RAISED));
         BtnBuscarViajes.setForeground(Color.blue);
         BtnBuscarViajes.setBackground(Color.white);
     }
