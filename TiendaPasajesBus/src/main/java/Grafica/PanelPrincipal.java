@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 
 public class PanelPrincipal extends JPanel {
     private CardLayout cardLayout;
-    PanelPrincipal esteObjeto = this;
-    PanelEleccionTrayecto panel1;
-    PanelViajesDisponibles panel2;
-    PanelEleccionAsiento panel3;
+    private PanelPrincipal esteObjeto = this;
+    private PanelEleccionTrayecto panel1;
+    private PanelViajesDisponibles panel2;
+    private PanelEleccionAsiento panel3;
     public PanelPrincipal(){
         panel1 = new PanelEleccionTrayecto();
         panel2 = new PanelViajesDisponibles();
@@ -29,6 +29,7 @@ public class PanelPrincipal extends JPanel {
 
         accionBtnBuscarPasaje();
         accionBtnVolverPanel2();
+        accionBtnVolverPanel3();
     }
     private void accionBtnBuscarPasaje(){
         ActionListener accion1 = new ActionListener() {
@@ -74,5 +75,14 @@ public class PanelPrincipal extends JPanel {
             }
         };
         return accion3;
+    }
+    private void accionBtnVolverPanel3(){
+        ActionListener accion4 = new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cardLayout.show(esteObjeto,"panel2");
+            }
+        };
+        panel3.accionBtnVolver(accion4);
     }
 }

@@ -2,6 +2,7 @@ package Grafica;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class PanelEleccionAsiento extends JPanel {
     private CardLayout cardLayout;
@@ -11,8 +12,10 @@ public class PanelEleccionAsiento extends JPanel {
         pisos = new PanelAsientos();
 
         volver = new JButton("Volver");
-        
+        volver.setBounds(30,20,100,50);
+
         this.add(pisos);
+        this.add(volver);
 
         this.setLayout(null);
         this.setBackground(Color.yellow);
@@ -21,5 +24,8 @@ public class PanelEleccionAsiento extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+    }
+    public void accionBtnVolver(ActionListener accion){
+        volver.addActionListener(accion);
     }
 }
