@@ -71,9 +71,9 @@ public class PanelPrincipal extends JPanel {
             public void actionPerformed(ActionEvent e){
                 EmpresaBuses.getEmpresaBuses(0).elejirBus(busSolicitado);
                 System.out.println(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getRecorrido().getDatosRecorrido());
+                panel3.setCantidadPisos(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().getNroPisos());
                 panel3.eliminarBtnsPiso();
                 panel3.mostrarPiso1();
-                panel3.setCantidadPisos(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().getNroPisos());
                 accionBtnPiso1Panel3();
                 accionBtnPiso2Panel3();
                 cardLayout.show(esteObjeto,"panel3");

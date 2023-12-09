@@ -6,12 +6,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class PanelEleccionAsiento extends JPanel {
-    private CardLayout cardLayout;
     private PanelAsientos asientos;
     private JButton volver;
     private JButton piso1;
     private JButton piso2;
     private JButton pagar;
+    private JLabel etiquetaPiso1;
+    private JLabel etiquetaPiso2;
     private int cantidadPisos;
     public PanelEleccionAsiento(){
         cantidadPisos=1;
@@ -39,6 +40,18 @@ public class PanelEleccionAsiento extends JPanel {
         seleccionado.setForeground(Color.black);
         seleccionado.setBounds(1035 ,280,300,50);
 
+        etiquetaPiso1 = new JLabel("Piso 1");
+        Font fontPiso = new Font("Arial Black",Font.BOLD,20);
+        etiquetaPiso1.setFont(fontPiso);
+        etiquetaPiso1.setForeground(Color.blue);
+        etiquetaPiso1.setBounds(270,85,100,20);
+
+        etiquetaPiso2 = new JLabel("Piso 2");
+        etiquetaPiso2.setFont(fontPiso);
+        etiquetaPiso2.setForeground(Color.blue);
+        etiquetaPiso2.setBounds(270,85,100,20);
+        this.setVisible(false);
+
         pagar = new JButton("Pagar");
         Font fontPagar = new Font("Arial Black", Font.BOLD, 35);
         pagar.setFont(fontPagar);
@@ -53,6 +66,8 @@ public class PanelEleccionAsiento extends JPanel {
         this.add(ocupado);
         this.add(seleccionado);
         this.add(pagar);
+        this.add(etiquetaPiso1);
+        this.add(etiquetaPiso2);
 
         this.setLayout(null);
         this.setBackground(Color.yellow);
@@ -138,7 +153,6 @@ public class PanelEleccionAsiento extends JPanel {
             piso1.addActionListener(accion);
             this.add(piso1);
         }
-
     }
     public void crearBtnPiso2(ActionListener accion){
         if(cantidadPisos==2){
@@ -164,10 +178,14 @@ public class PanelEleccionAsiento extends JPanel {
     }
     public void mostrarPiso1(){
         asientos.mostrarPiso1();
+        etiquetaPiso1.setVisible(true);
+        etiquetaPiso2.setVisible(false);
     }
     public void mostrarPiso2(){
         if(cantidadPisos==2){
             asientos.mostrarPiso2();
+            etiquetaPiso2.setVisible(true);
+            etiquetaPiso1.setVisible(false);
         }
     }
 

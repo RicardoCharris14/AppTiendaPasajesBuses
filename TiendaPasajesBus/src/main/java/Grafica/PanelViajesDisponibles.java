@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class PanelViajesDisponibles extends JPanel {
     private int numeroViajes;
     JButton volver;
+    JLabel instruccion;
     public PanelViajesDisponibles(){
         numeroViajes = 0;
 
@@ -19,12 +20,12 @@ public class PanelViajesDisponibles extends JPanel {
         titulo.setForeground(Color.BLUE);
         titulo.setBackground(Color.CYAN);
         titulo.setOpaque(true);
-        titulo.setBounds(500,30,540,50);
+        titulo.setBounds(430,30,540,50);
 
-        JLabel instruccion = new JLabel("Escoja uno de los buses disponibles:");
+        instruccion = new JLabel("Escoja uno de los buses disponibles:");
         Font fontInstruccion = new Font("Arial", Font.BOLD, 20);
         instruccion.setFont(fontInstruccion);
-        instruccion.setBounds(115,120,600,20);
+        instruccion.setBounds(115,120,600,35);
 
 
 
@@ -49,8 +50,17 @@ public class PanelViajesDisponibles extends JPanel {
         for(int i=0 ; i<EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().size() ; i++){
             g.drawRect(115 ,160+130*i,1235,100);
         }
+        if(EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().isEmpty()){
+            Font fuente = new Font("Arial",Font.ITALIC,50);
+            g.setColor(Color.RED);
+            g.setFont(fuente);
+            g.drawString("No hay buses disponibles escoga otro itinerario",180,330);
+            instruccion.setVisible(false);
+        }
+
     }
     public void crearProgramacionBus(ActionListener accion){
+        instruccion.setVisible(true);
         JButton botonComprarBus = new JButton("Comprar");
         botonComprarBus.setBounds(1200,160+130*numeroViajes,150,100);
         botonComprarBus.setFocusPainted(false);
