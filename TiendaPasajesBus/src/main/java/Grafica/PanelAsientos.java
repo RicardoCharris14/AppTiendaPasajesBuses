@@ -30,4 +30,17 @@ public class PanelAsientos extends JPanel {
     public void mostrarPiso2(){
         cardLayout.show(this,"piso2");
     }
+    public void crearSeleccionadoresAsientos(){
+        piso1.crearSeleccionadoresAsientos();
+        piso2.crearSeleccionadoresAsientos();
+    }
+    public void eliminarListeners(){
+        piso1.eliminarListeners();
+        piso2.eliminarAcciones();
+    }
+    public void eliminarAsientosSeleccionados(){
+        piso1.eliminarAsientosSeleccionados();
+        piso2.eliminarAsientosSeleccionados();
+    }
+
 }

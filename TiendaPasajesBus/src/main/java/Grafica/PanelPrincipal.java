@@ -76,6 +76,8 @@ public class PanelPrincipal extends JPanel {
                 panel3.mostrarPiso1();
                 accionBtnPiso1Panel3();
                 accionBtnPiso2Panel3();
+                panel3.eliminarListeners();
+                panel3.crearSeleccionadoresAsientos();
                 cardLayout.show(esteObjeto,"panel3");
             }
         };
@@ -85,6 +87,7 @@ public class PanelPrincipal extends JPanel {
         ActionListener accion4 = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                panel3.eliminarAsientosSeleccionados();
                 cardLayout.show(esteObjeto,"panel2");
             }
         };

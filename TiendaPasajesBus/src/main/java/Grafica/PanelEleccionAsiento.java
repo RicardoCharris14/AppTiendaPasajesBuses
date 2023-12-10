@@ -57,7 +57,7 @@ public class PanelEleccionAsiento extends JPanel {
         pagar.setFont(fontPagar);
         pagar.setForeground(Color.blue);
         pagar.setBorder(new BevelBorder(BevelBorder.RAISED));
-        pagar.setBounds(760 ,520,300,85);
+        pagar.setBounds(560 ,520,300,85);
         pagar.setFocusPainted(false);
 
         this.add(asientos);
@@ -142,13 +142,16 @@ public class PanelEleccionAsiento extends JPanel {
     public void accionBtnVolver(ActionListener accion){
         volver.addActionListener(accion);
     }
+    public void accionBtnPagar(ActionListener accion){
+        pagar.addActionListener(accion);
+    }
     public void crearBtnPiso1(ActionListener accion){
         if(cantidadPisos==2){
             piso1 = new JButton("Piso 1");
             Font fontPiso1 = new Font("Arial", Font.BOLD, 30);
             piso1.setFont(fontPiso1);
             piso1.setBorder(new BevelBorder(BevelBorder.RAISED));
-            piso1.setBounds(735,380,150,75);
+            piso1.setBounds(535,380,150,75);
             piso1.setFocusPainted(false);
             piso1.addActionListener(accion);
             this.add(piso1);
@@ -160,16 +163,22 @@ public class PanelEleccionAsiento extends JPanel {
             Font fontPiso2 = new Font("Arial", Font.BOLD, 30);
             piso2.setFont(fontPiso2);
             piso2.setBorder(new BevelBorder(BevelBorder.RAISED));
-            piso2.setBounds(935,380,150,75);
+            piso2.setBounds(735,380,150,75);
             piso2.setFocusPainted(false);
             piso2.addActionListener(accion);
             this.add(piso2);
         }
     }
-    public void accionBtnPagar(ActionListener accion){
-        pagar.addActionListener(accion);
-    }
 
+    public void crearSeleccionadoresAsientos(){
+        asientos.crearSeleccionadoresAsientos();
+    }
+    public void eliminarListeners(){
+        asientos.eliminarListeners();
+    }
+    public void eliminarAsientosSeleccionados(){
+        asientos.eliminarAsientosSeleccionados();
+    }
     public void eliminarBtnsPiso(){
         int nroComponentes = this.getComponentCount();
         for(int i=0;i<nroComponentes-8;i++){
@@ -188,5 +197,4 @@ public class PanelEleccionAsiento extends JPanel {
             etiquetaPiso1.setVisible(false);
         }
     }
-
 }
