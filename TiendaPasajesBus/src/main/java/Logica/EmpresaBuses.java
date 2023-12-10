@@ -10,7 +10,8 @@ public class EmpresaBuses {
     private ArrayList<String> ciudadesAsociadas;
     private ArrayList<LocalDate> fechasViajes;
     private ArrayList<Bus> buses;
-    private ArrayList<Bus> busesSolicitados;
+    private ArrayList<Bus> busesItinerarioCliente;
+    private ArrayList<Cliente> clientes;
     private Bus busSolicitado;
     private int nroBuses;
     private EmpresaBuses(int capacidadBuses){
@@ -18,7 +19,8 @@ public class EmpresaBuses {
         ciudadesAsociadas = new ArrayList<>();
         fechasViajes = new ArrayList<>();
         buses = new ArrayList<>();
-        busesSolicitados = new ArrayList<>();
+        busesItinerarioCliente = new ArrayList<>();
+        clientes = new ArrayList<>();
         busSolicitado=null;
         nroBuses = 0;
     }
@@ -28,14 +30,14 @@ public class EmpresaBuses {
         }
         return instancia;
     }
-    public Pasaje comprarPasaje(Cliente cliente, int nroBus, int nroAsiento)throws AsientoOcupadoException{
-        if(nroBus>0 && nroBus<=nroBuses){
-            Bus busSolicitado = buses.get(nroBus-1);
+    public Pasaje comprarPasaje(Cliente cliente, Bus busSolicitado, int nroAsiento)throws AsientoOcupadoException{
+        if(buses.contains(busSolicitado)){
             Asiento asientoSolicitado = busSolicitado.getAsiento(nroAsiento);
             if(asientoSolicitado!= null){
                 if(asientoSolicitado.getDisponible()){
                     asientoSolicitado.setDisponible(false);
                     Pasaje pasaje = new Pasaje(cliente, busSolicitado, asientoSolicitado.getNumAsiento());
+                    clientes.add(cliente);
                     System.out.println(pasaje.emitirPasaje());
                     return pasaje;
                 }
@@ -52,7 +54,7 @@ public class EmpresaBuses {
         }
     }
     public void agregarBus(Bus bus, String origen, String destino, LocalDateTime fecha, int precio){
-        Boolean fechaExiste = false;
+        boolean fechaExiste = false;
         int contadorBusesIgualDia = 0;
         if(bus!=null && buses.size()<capacidadBuses){
             if(ciudadesAsociadas.contains(origen) && ciudadesAsociadas.contains(destino)){
@@ -90,24 +92,24 @@ public class EmpresaBuses {
         buses.remove(nroBus-1);
     }
     public void filtrarBuses(String origen, String destino, String fecha) {
-        busesSolicitados.clear();
+        busesItinerarioCliente.clear();
 
         for(Bus bus : buses){
             if(bus.getRecorrido().getOrigen().equals(origen) &&
                     bus.getRecorrido().getDestino().equals(destino) &&
                     bus.getRecorrido().getFechaSalida().toLocalDate().toString().equals(fecha)){
-                busesSolicitados.add(bus);
+                busesItinerarioCliente.add(bus);
             }
         }
     }
     public void elejirBus(int eleccion){
-        busSolicitado = busesSolicitados.get(eleccion-1);
+        busSolicitado = busesItinerarioCliente.get(eleccion-1);
     }
     public Bus getBusSolicitado(){
         return busSolicitado;
     }
-    public ArrayList<Bus> getBusesSolicitados(){
-        return busesSolicitados;
+    public ArrayList<Bus> getBusesItinerarioCliente(){
+        return busesItinerarioCliente;
     }
     public void addCiudadesAsociadas(String ciudad){
         ciudadesAsociadas.add(ciudad);

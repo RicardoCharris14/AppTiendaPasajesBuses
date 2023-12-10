@@ -47,10 +47,10 @@ public class PanelViajesDisponibles extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.BLACK);
-        for(int i=0 ; i<EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().size() ; i++){
+        for(int i = 0; i<EmpresaBuses.getEmpresaBuses(0).getBusesItinerarioCliente().size() ; i++){
             g.drawRect(90 ,160+130*i,1240,100);
         }
-        if(EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().isEmpty()){
+        if(EmpresaBuses.getEmpresaBuses(0).getBusesItinerarioCliente().isEmpty()){
             Font fuente = new Font("Arial",Font.ITALIC,50);
             g.setColor(Color.RED);
             g.setFont(fuente);
@@ -81,7 +81,7 @@ public class PanelViajesDisponibles extends JPanel {
     }
 
     private JLabel getJLabel(int i) {
-        Bus busDisponible = EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().get(i);
+        Bus busDisponible = EmpresaBuses.getEmpresaBuses(0).getBusesItinerarioCliente().get(i);
         String programacion = "Tipo Bus: "+busDisponible.getTipoBus()+"  |  Horario salida: "
                 +busDisponible.getRecorrido().getFechaSalida().toLocalTime().toString()+"  | Nro. Pisos: "+
                 busDisponible.getPisos().getNroPisos()+"  |  Precio: "+busDisponible.getValorPasaje();

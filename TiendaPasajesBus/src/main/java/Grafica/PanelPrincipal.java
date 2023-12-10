@@ -1,6 +1,7 @@
 package Grafica;
 
 import Logica.Asiento;
+import Logica.Cliente;
 import Logica.EmpresaBuses;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class PanelPrincipal extends JPanel {
     private CardLayout cardLayout;
@@ -31,7 +33,7 @@ public class PanelPrincipal extends JPanel {
         this.add(panel3,"panel3");
         this.add(panel4,"panel4");
 
-        cardLayout.show(this,"panel4");
+        cardLayout.show(this,"panel1");
 
         accionBtnBuscarPasaje();
         accionBtnVolverPanel2();
@@ -49,7 +51,7 @@ public class PanelPrincipal extends JPanel {
                         !seleccionFecha.equals("Seleccione la fecha del viaje")){
                     if(!seleccionOrigen.equals(seleccionDestino)){
                         EmpresaBuses.getEmpresaBuses(0).filtrarBuses(seleccionOrigen,seleccionDestino,seleccionFecha);
-                        int numBusesSolicitados = EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().size();
+                        int numBusesSolicitados = EmpresaBuses.getEmpresaBuses(0).getBusesItinerarioCliente().size();
                         panel2.eliminarProgramacionBus();
                         for(int i=1; i<=numBusesSolicitados; i++){
                             panel2.crearProgramacionBus(accionBtnsComprarPanel2(i));
@@ -238,10 +240,37 @@ public class PanelPrincipal extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!panel3.getSillasSeleccionadasP1().isEmpty() || !panel3.getSillasSeleccionadasP2().isEmpty()){
+                    accionBtnReservar();
                     cardLayout.show(esteObjeto,"panel4");
                 }
             }
         };
         panel3.accionBtnComprar(accionBtnComprar);
+    }
+    private void accionBtnReservar(){
+        ActionListener accion = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EmpresaBuses empresa = EmpresaBuses.getEmpresaBuses(0);
+                ArrayList<Asiento> sillasPiso1 = panel3.getSillasSeleccionadasP1();
+                ArrayList<Asiento> sillasPiso2 = panel3.getSillasSeleccionadasP2();
+                String nombre = panel4.getNombreUsuario().getText();
+                String rut = panel4.getRutUsuario().getText();
+                if(!nombre.isEmpty() && !rut.isEmpty()){
+                    Cliente cliente = new Cliente(nombre,rut);
+                    for(Asiento asiento : sillasPiso1){
+                        cliente.comprarPasaje(empresa, empresa.getBusSolicitado(), asiento.getNumAsiento());
+                    }
+                    for(Asiento asiento : sillasPiso2){
+                        cliente.comprarPasaje(empresa, empresa.getBusSolicitado(), asiento.getNumAsiento());
+                    }
+                    panel4.getNombreUsuario().setText("");
+                    panel4.getRutUsuario().setText("");
+                    panel3.eliminarAsientosSeleccionados();
+                    cardLayout.show(esteObjeto,"panel1");
+                }
+            }
+        };
+        panel4.addActionBtnReserva(accion);
     }
 }

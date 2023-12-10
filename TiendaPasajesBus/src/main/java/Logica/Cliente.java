@@ -1,10 +1,14 @@
 package Logica;
 
+import java.util.ArrayList;
+
 public class Cliente {
     private final String nombre;
     private final String rut;
-    private Pasaje pasaje;
+    private ArrayList<Pasaje> pasaje;
     public Cliente(String nombre, String rut){
+        pasaje = new ArrayList<>();
+
         this.nombre = nombre;
         this.rut = rut;
     }
@@ -14,14 +18,14 @@ public class Cliente {
     public String getRut(){
         return rut;
     }
-    public void comprarPasaje(EmpresaBuses empresa, int nroBus, int nroAsiento){
+    public void comprarPasaje(EmpresaBuses empresa, Bus busSeleccionado, int nroAsiento){
         try{
-            pasaje = empresa.comprarPasaje(this,nroBus,nroAsiento);
+            pasaje.add(empresa.comprarPasaje(this,busSeleccionado,nroAsiento));
         }catch (AsientoOcupadoException e){
             System.out.println("\n"+e.getMessage());
         }
     }
-    public Pasaje getPasaje(){
-        return pasaje;
+    public Pasaje getPasaje(int nPasaje){
+        return pasaje.get(nPasaje-1);
     }
 }

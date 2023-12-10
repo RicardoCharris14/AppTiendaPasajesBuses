@@ -30,10 +30,10 @@ public class Main {
 
         Cliente ricardo = new Cliente("Ricardo Charris", "22.066.527-5");
         System.out.println("El pasaje de ricardo es: \n");
-        ricardo.comprarPasaje(EME,1,11);
+        ricardo.comprarPasaje(EME,bus1,11);
         Cliente vicente = new Cliente("Vicente Ramirez","21.311.079-9");
         System.out.println("El pasaje de Vicente es: \n");
-        vicente.comprarPasaje(EME,2,11);
+        vicente.comprarPasaje(EME,bus2,11);
 
         Ventana ventana = new Ventana();
     }
