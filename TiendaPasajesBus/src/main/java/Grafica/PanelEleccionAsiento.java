@@ -1,9 +1,14 @@
 package Grafica;
 
+import Logica.Asiento;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.net.NoRouteToHostException;
+import java.util.ArrayList;
 
 public class PanelEleccionAsiento extends JPanel {
     private PanelAsientos asientos;
@@ -14,8 +19,12 @@ public class PanelEleccionAsiento extends JPanel {
     private JLabel etiquetaPiso1;
     private JLabel etiquetaPiso2;
     private int cantidadPisos;
+    private int precioTotal;
+    private int nroSillas;
     public PanelEleccionAsiento(){
+        precioTotal = 0;
         cantidadPisos=1;
+        nroSillas = 0;
         asientos = new PanelAsientos();
 
         volver = new JButton("Volver");
@@ -72,7 +81,24 @@ public class PanelEleccionAsiento extends JPanel {
         this.setLayout(null);
         this.setBackground(Color.yellow);
     }
-
+    public ArrayList<Asiento> getSillasSeleccionadasP1(){
+        return asientos.getSillasSeleccionadasP1();
+    }
+    public ArrayList<Asiento> getSillasSeleccionadasP2(){
+        return asientos.getSillasSeleccionadasP2();
+    }
+    public void aumentarPrecioTotal(int valor){
+        precioTotal+=valor;
+    }
+    public void setPrecioTotal(int valor){
+        precioTotal = valor;
+    }
+    public void aumentarNroSillas(){
+        nroSillas+=1;
+    }
+    public void setNroSillas(int nroSillas){
+        this.nroSillas = nroSillas;
+    }
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -135,6 +161,10 @@ public class PanelEleccionAsiento extends JPanel {
         g.drawPolygon(xPuntos1,yPuntos1,nPuntos);
         g.setColor(Color.gray);
         g.drawPolygon(xPuntos2,yPuntos2,nPuntos);
+
+        g.setFont(new Font("Arial",Font.BOLD,40));
+        g.drawString("Precio total: $"+precioTotal,950,450);
+        g.drawString("Nro. Sillas: "+ nroSillas,950,550);
     }
     public void setCantidadPisos(int cantidadPisos){
         this.cantidadPisos = cantidadPisos;
@@ -170,8 +200,11 @@ public class PanelEleccionAsiento extends JPanel {
         }
     }
 
-    public void crearSeleccionadoresAsientos(){
-        asientos.crearSeleccionadoresAsientos();
+    public void seleccionadoresAsientosP1(MouseListener listener){
+        asientos.seleccionadoresAsientosP1(listener);
+    }
+    public void seleccionadoresAsientosP2(MouseListener listener){
+        asientos.seleccionadoresAsientosP2(listener);
     }
     public void eliminarListeners(){
         asientos.eliminarListeners();

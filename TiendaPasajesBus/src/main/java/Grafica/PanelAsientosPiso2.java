@@ -5,48 +5,19 @@ import Logica.EmpresaBuses;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class PanelAsientosPiso2 extends JPanel {
     private ArrayList<Asiento> sillasSeleccionadas;
-    private int numeroSillasPiso1;
-    private int numeroSillasPiso2;
-    private int sillasPorColumna;
     public PanelAsientosPiso2(){
         sillasSeleccionadas = new ArrayList<>();
 
         this.setLayout(null);
         this.setBackground(Color.white);
     }
-    private void accionSeleccionarSillas(int i,int desplazamientoX, int desplazamientoY){
-        MouseListener listener1 = new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {}
-            @Override
-            public void mousePressed(MouseEvent e) {
-                int clickX = e.getX();
-                int clickY = e.getY();
-                if(clickX >= 50 + desplazamientoX && clickX < 84 +desplazamientoX &&
-                        clickY >= 30 + desplazamientoY && clickY <= 90 + desplazamientoY){
-                    Asiento asiento = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado()
-                            .getAsiento(i);
-                    if(!sillasSeleccionadas.contains(asiento) && asiento.getDisponible()){
-                        System.out.println("chao");
-                        sillasSeleccionadas.add(asiento);
-                        repaint();
-                    }
-                }
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {}
-            @Override
-            public void mouseEntered(MouseEvent e) {}
-            @Override
-            public void mouseExited(MouseEvent e) {}
-        };
-        this.addMouseListener(listener1);
+    public ArrayList<Asiento> getSillasElejidas(){
+        return sillasSeleccionadas;
     }
     @Override
     public void paint(Graphics g) {
@@ -75,6 +46,18 @@ public class PanelAsientosPiso2 extends JPanel {
         Polygon silla = new Polygon(xPuntos,yPuntos,nPuntos);
 
         int numeroCiclo = 0;
+        int sillasPorColumna;
+        int numeroSillasPiso1 = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().
+                getNroAsientosPiso1();
+        int numeroSillasPiso2 = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().
+                getNroAsientosPiso2();
+        if(numeroSillasPiso2%3==0){
+            sillasPorColumna = numeroSillasPiso2/3;
+        }
+        else{
+            sillasPorColumna = numeroSillasPiso2/3 +1;
+        }
+
         for (int i = 0; i<numeroSillasPiso2;i++){
             if(!EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().
                     getAsiento(numeroSillasPiso1+i+1).getDisponible()){
@@ -97,32 +80,8 @@ public class PanelAsientosPiso2 extends JPanel {
             movePolygon(silla,0,80);
         }
     }
-    public void crearSeleccionadoresAsientos(){
-        numeroSillasPiso1 = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().getNroAsientosPiso1();
-        numeroSillasPiso2 = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().getNroAsientosPiso2();
-
-        if(numeroSillasPiso2%3==0){
-            sillasPorColumna = numeroSillasPiso2/3;
-        }
-        else{
-            sillasPorColumna = numeroSillasPiso2/3 +1;
-        }
-
-        int nCiclos = 0;
-        int desplazamientoX = 0;
-        int desplazamientoY = 0;
-        for(int i=0;i<numeroSillasPiso2;i++){
-            accionSeleccionarSillas(numeroSillasPiso1+1+i,desplazamientoX,desplazamientoY);
-            desplazamientoY+=80;
-            if ((i+1)%sillasPorColumna == 0){
-                nCiclos +=1;
-                desplazamientoX += 60;
-                desplazamientoY = 0;
-                if(nCiclos ==2){
-                    desplazamientoX += 60;
-                }
-            }
-        }
+    public void listenerAsientos(MouseListener listener){
+        this.addMouseListener(listener);
     }
     public void eliminarAcciones(){
         MouseListener[] mouseListeners = this.getMouseListeners();

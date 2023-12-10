@@ -1,8 +1,12 @@
 package Grafica;
 
+import Logica.Asiento;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class PanelAsientos extends JPanel {
     CardLayout cardLayout;
@@ -24,15 +28,23 @@ public class PanelAsientos extends JPanel {
         this.setBorder(borde);
         cardLayout.show(this,"piso1");
     }
+    public ArrayList<Asiento> getSillasSeleccionadasP1(){
+        return piso1.getSillasElejidas();
+    }
+    public ArrayList<Asiento> getSillasSeleccionadasP2(){
+        return piso2.getSillasElejidas();
+    }
     public void mostrarPiso1(){
         cardLayout.show(this,"piso1");
     }
     public void mostrarPiso2(){
         cardLayout.show(this,"piso2");
     }
-    public void crearSeleccionadoresAsientos(){
-        piso1.crearSeleccionadoresAsientos();
-        piso2.crearSeleccionadoresAsientos();
+    public void seleccionadoresAsientosP1(MouseListener listener){
+        piso1.listenerAsientos(listener);
+    }
+    public void seleccionadoresAsientosP2(MouseListener listener){
+        piso2.listenerAsientos(listener);
     }
     public void eliminarListeners(){
         piso1.eliminarListeners();

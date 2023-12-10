@@ -1,11 +1,14 @@
 package Grafica;
 
+import Logica.Asiento;
 import Logica.EmpresaBuses;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class PanelPrincipal extends JPanel {
     private CardLayout cardLayout;
@@ -66,18 +69,70 @@ public class PanelPrincipal extends JPanel {
         panel2.accionBtnVolver(accion2);
     }
     private ActionListener accionBtnsComprarPanel2(int busSolicitado){
+
         ActionListener accion3 = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 EmpresaBuses.getEmpresaBuses(0).elejirBus(busSolicitado);
                 System.out.println(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getRecorrido().getDatosRecorrido());
+
+                int nCiclosP1 = 0;
+                int desplazamientoXP1 = 0;
+                int desplazamientoYP1 = 0;
+                int sillasPorColumnaP1;
+                int nCiclosP2 = 0;
+                int desplazamientoXP2 = 0;
+                int desplazamientoYP2 = 0;
+                int sillasPorColumnaP2;
+                int numeroSillasPiso1 = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().
+                        getNroAsientosPiso1();
+                int numeroSillasPiso2 = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().
+                        getNroAsientosPiso2();
+
+                if(numeroSillasPiso1 % 3 == 0){
+                    sillasPorColumnaP1 = numeroSillasPiso1/3;
+                }else{
+                    sillasPorColumnaP1 = numeroSillasPiso1/3 + 1;
+                }
+                if(numeroSillasPiso2%3==0){
+                    sillasPorColumnaP2 = numeroSillasPiso2/3;
+                }
+                else{
+                    sillasPorColumnaP2 = numeroSillasPiso2/3 +1;
+                }
+
                 panel3.setCantidadPisos(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().getNroPisos());
                 panel3.eliminarBtnsPiso();
                 panel3.mostrarPiso1();
                 accionBtnPiso1Panel3();
                 accionBtnPiso2Panel3();
                 panel3.eliminarListeners();
-                panel3.crearSeleccionadoresAsientos();
+
+                for(int i=0;i<numeroSillasPiso1;i++){
+                    panel3.seleccionadoresAsientosP1(accionSeleccionarSillasP1(i+1,desplazamientoXP1,desplazamientoYP1));
+                    desplazamientoYP1 += 80;
+                    if((i+1)%sillasPorColumnaP1 == 0){
+                        nCiclosP1+=1;
+                        desplazamientoXP1 += 60;
+                        desplazamientoYP1 = 0;
+                        if(nCiclosP1 == 2){
+                            desplazamientoXP1 += 60;
+                        }
+                    }
+                }
+                for(int i=0;i<numeroSillasPiso2;i++){
+                    panel3.seleccionadoresAsientosP2(accionSeleccionarSillasP2(numeroSillasPiso1+1+i,
+                            desplazamientoXP2,desplazamientoYP2));
+                    desplazamientoYP2+=80;
+                    if ((i+1)%sillasPorColumnaP2 == 0){
+                        nCiclosP2 +=1;
+                        desplazamientoXP2 += 60;
+                        desplazamientoYP2 = 0;
+                        if(nCiclosP2 ==2){
+                            desplazamientoXP2 += 60;
+                        }
+                    }
+                }
                 cardLayout.show(esteObjeto,"panel3");
             }
         };
@@ -87,6 +142,8 @@ public class PanelPrincipal extends JPanel {
         ActionListener accion4 = new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
+                panel3.setPrecioTotal(0);
+                panel3.setNroSillas(0);
                 panel3.eliminarAsientosSeleccionados();
                 cardLayout.show(esteObjeto,"panel2");
             }
@@ -110,5 +167,66 @@ public class PanelPrincipal extends JPanel {
             }
         };
         panel3.crearBtnPiso2(accion6);
+    }
+    private MouseListener accionSeleccionarSillasP1(int i, int desplazamientoX, int desplazamientoY){
+        MouseListener listener1 = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int clickX = e.getX();
+                int clickY = e.getY();
+                if(clickX >= 50 + desplazamientoX && clickX < 84 +desplazamientoX &&
+                        clickY >= 30 + desplazamientoY && clickY <= 90 + desplazamientoY){
+
+                    Asiento asiento = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado()
+                            .getAsiento(i);
+                    if(!panel3.getSillasSeleccionadasP1().contains(asiento) && asiento.getDisponible()){
+                        panel3.aumentarPrecioTotal(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().
+                                getValorPasaje());
+                        panel3.aumentarNroSillas();
+                        panel3.getSillasSeleccionadasP1().add(asiento);
+                        repaint();
+                    }
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        };
+        return listener1;
+    }
+    private MouseListener accionSeleccionarSillasP2(int i,int desplazamientoX, int desplazamientoY){
+        MouseListener listener1 = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int clickX = e.getX();
+                int clickY = e.getY();
+                if(clickX >= 50 + desplazamientoX && clickX < 84 +desplazamientoX &&
+                        clickY >= 30 + desplazamientoY && clickY <= 90 + desplazamientoY){
+                    Asiento asiento = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado()
+                            .getAsiento(i);
+                    if(!panel3.getSillasSeleccionadasP2().contains(asiento) && asiento.getDisponible()){
+                        panel3.aumentarPrecioTotal(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().
+                                getValorPasaje());
+                        panel3.aumentarNroSillas();
+                        panel3.getSillasSeleccionadasP2().add(asiento);
+                        repaint();
+                    }
+                }
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        };
+        return listener1;
     }
 }
