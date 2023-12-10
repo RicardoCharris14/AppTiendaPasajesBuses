@@ -9,14 +9,14 @@ public class Ventana extends JFrame {
 
     public Ventana() {
         PanelPrincipal panel = new PanelPrincipal();
-        panel.setBounds(50, 50, 1435, 700);
+        panel.setBounds(30, 30, 1400, 700);
 
         this.add(panel);
 
         this.setLayout(null);
         this.setVisible(true);
         this.setTitle("Pasaje de buses");
-        this.setSize(1200,800);
+        this.setSize(1500,800);
 
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

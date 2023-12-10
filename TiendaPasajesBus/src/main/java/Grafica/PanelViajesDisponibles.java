@@ -25,7 +25,7 @@ public class PanelViajesDisponibles extends JPanel {
         instruccion = new JLabel("Escoja uno de los buses disponibles:");
         Font fontInstruccion = new Font("Arial", Font.BOLD, 20);
         instruccion.setFont(fontInstruccion);
-        instruccion.setBounds(115,120,600,35);
+        instruccion.setBounds(90,120,600,35);
 
 
 
@@ -48,7 +48,7 @@ public class PanelViajesDisponibles extends JPanel {
         super.paint(g);
         g.setColor(Color.BLACK);
         for(int i=0 ; i<EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().size() ; i++){
-            g.drawRect(115 ,160+130*i,1235,100);
+            g.drawRect(90 ,160+130*i,1240,100);
         }
         if(EmpresaBuses.getEmpresaBuses(0).getBusesSolicitados().isEmpty()){
             Font fuente = new Font("Arial",Font.ITALIC,50);
@@ -62,13 +62,13 @@ public class PanelViajesDisponibles extends JPanel {
     public void crearProgramacionBus(ActionListener accion){
         instruccion.setVisible(true);
         JButton botonComprarBus = new JButton("Comprar");
-        botonComprarBus.setBounds(1200,160+130*numeroViajes,150,100);
+        botonComprarBus.setBounds(1180,160+130*numeroViajes,150,100);
         botonComprarBus.setFocusPainted(false);
         botonComprarBus.addActionListener(accion);
         this.add(botonComprarBus);
 
         JLabel programacionBus = getJLabel(numeroViajes);
-        programacionBus.setBounds(150,160+130*numeroViajes,1050,100);
+        programacionBus.setBounds(120,160+130*numeroViajes,1050,100);
         this.add(programacionBus);
 
         this.numeroViajes +=1;

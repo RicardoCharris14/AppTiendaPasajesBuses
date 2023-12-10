@@ -7,7 +7,6 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.net.NoRouteToHostException;
 import java.util.ArrayList;
 
 public class PanelEleccionAsiento extends JPanel {
@@ -165,7 +164,7 @@ public class PanelEleccionAsiento extends JPanel {
         g.setFont(new Font("Arial",Font.BOLD,40));
         g.drawString("Precio total: $"+precioTotal,950,450);
         g.drawString("Nro. Sillas: "+ nroSillas,950,550);
-        
+
     }
     public void setCantidadPisos(int cantidadPisos){
         this.cantidadPisos = cantidadPisos;
@@ -173,7 +172,7 @@ public class PanelEleccionAsiento extends JPanel {
     public void accionBtnVolver(ActionListener accion){
         volver.addActionListener(accion);
     }
-    public void accionBtnPagar(ActionListener accion){
+    public void accionBtnComprar(ActionListener accion){
         pagar.addActionListener(accion);
     }
     public void crearBtnPiso1(ActionListener accion){

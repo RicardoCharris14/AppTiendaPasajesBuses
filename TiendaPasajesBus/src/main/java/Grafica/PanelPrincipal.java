@@ -16,10 +16,12 @@ public class PanelPrincipal extends JPanel {
     private PanelEleccionTrayecto panel1;
     private PanelViajesDisponibles panel2;
     private PanelEleccionAsiento panel3;
+    private PanelDatosComprador panel4;
     public PanelPrincipal(){
         panel1 = new PanelEleccionTrayecto();
         panel2 = new PanelViajesDisponibles();
         panel3 = new PanelEleccionAsiento();
+        panel4 = new PanelDatosComprador();
 
         cardLayout = new CardLayout();
         this.setLayout(cardLayout);
@@ -27,8 +29,9 @@ public class PanelPrincipal extends JPanel {
         this.add(panel1,"panel1");
         this.add(panel2,"panel2");
         this.add(panel3,"panel3");
+        this.add(panel4,"panel4");
 
-        cardLayout.show(this,"panel1");
+        cardLayout.show(this,"panel4");
 
         accionBtnBuscarPasaje();
         accionBtnVolverPanel2();
@@ -106,6 +109,7 @@ public class PanelPrincipal extends JPanel {
                 panel3.mostrarPiso1();
                 accionBtnPiso1Panel3();
                 accionBtnPiso2Panel3();
+                accionComprarPasaje();
                 panel3.eliminarListeners();
 
                 for(int i=0;i<numeroSillasPiso1;i++){
@@ -228,5 +232,16 @@ public class PanelPrincipal extends JPanel {
             public void mouseExited(MouseEvent e) {}
         };
         return listener1;
+    }
+    private void accionComprarPasaje(){
+        ActionListener accionBtnComprar= new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!panel3.getSillasSeleccionadasP1().isEmpty() || !panel3.getSillasSeleccionadasP2().isEmpty()){
+                    cardLayout.show(esteObjeto,"panel4");
+                }
+            }
+        };
+        panel3.accionBtnComprar(accionBtnComprar);
     }
 }

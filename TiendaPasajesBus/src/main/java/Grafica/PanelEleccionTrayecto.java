@@ -39,7 +39,7 @@ public class PanelEleccionTrayecto extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         g.drawImage(emeBusChocado,60,370,500,300,this);
-        g.drawImage(emeBusLogo,900,260,500,500,this);
+        g.drawImage(emeBusLogo,870,260,500,500,this);
 
     }
     public ListaOpcionesDesplegables getOpciones(){
