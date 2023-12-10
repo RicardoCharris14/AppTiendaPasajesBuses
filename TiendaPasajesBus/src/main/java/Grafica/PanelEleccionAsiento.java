@@ -165,6 +165,7 @@ public class PanelEleccionAsiento extends JPanel {
         g.setFont(new Font("Arial",Font.BOLD,40));
         g.drawString("Precio total: $"+precioTotal,950,450);
         g.drawString("Nro. Sillas: "+ nroSillas,950,550);
+        
     }
     public void setCantidadPisos(int cantidadPisos){
         this.cantidadPisos = cantidadPisos;
