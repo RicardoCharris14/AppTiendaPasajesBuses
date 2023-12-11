@@ -252,22 +252,34 @@ public class PanelPrincipal extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EmpresaBuses empresa = EmpresaBuses.getEmpresaBuses(0);
-                ArrayList<Asiento> sillasPiso1 = panel3.getSillasSeleccionadasP1();
-                ArrayList<Asiento> sillasPiso2 = panel3.getSillasSeleccionadasP2();
+                ArrayList<Asiento> sillasAComprarP1 = panel3.getSillasSeleccionadasP1();
+                ArrayList<Asiento> sillasAComprarP2 = panel3.getSillasSeleccionadasP2();
+                int cantidadAsientosPiso1 = sillasAComprarP1.size();
+                int cantidadAsientosPiso2 = sillasAComprarP2.size();
+                int[] asientos = new int[cantidadAsientosPiso1+cantidadAsientosPiso2];
                 String nombre = panel4.getNombreUsuario().getText();
                 String rut = panel4.getRutUsuario().getText();
+
                 if(!nombre.isEmpty() && !rut.isEmpty()){
                     Cliente cliente = new Cliente(nombre,rut);
-                    for(Asiento asiento : sillasPiso1){
-                        cliente.comprarPasaje(empresa, empresa.getBusSolicitado(), asiento.getNumAsiento());
+                    for(int i=0;i<cantidadAsientosPiso1;i++){
+                        asientos[i]=sillasAComprarP1.get(i).getNumAsiento();
                     }
-                    for(Asiento asiento : sillasPiso2){
-                        cliente.comprarPasaje(empresa, empresa.getBusSolicitado(), asiento.getNumAsiento());
+                    for(int i=0;i<cantidadAsientosPiso2;i++){
+                        asientos[cantidadAsientosPiso1+i]=sillasAComprarP2.get(i).getNumAsiento();
                     }
+
+                    cliente.comprarPasaje(empresa, empresa.getBusSolicitado(), asientos);
+
                     panel4.getNombreUsuario().setText("");
                     panel4.getRutUsuario().setText("");
+                    panel3.setPrecioTotal(0);
+                    panel3.setNroSillas(0);
                     panel3.eliminarAsientosSeleccionados();
                     cardLayout.show(esteObjeto,"panel1");
+
+                    String pasaje = cliente.getPasaje().emitirPasaje();
+                    JOptionPane.showMessageDialog(null,pasaje,"PASAJE", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         };
