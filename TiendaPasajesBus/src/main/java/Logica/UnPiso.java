@@ -2,6 +2,11 @@ package Logica;
 
 import java.util.ArrayList;
 
+/**
+ * clase que sirve para crear un bus con un piso
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class UnPiso implements Pisos {
     private ArrayList<Asiento> asientosPiso1;
     private int nroAsientos;
@@ -9,6 +14,12 @@ public class UnPiso implements Pisos {
         asientosPiso1 = new ArrayList<>();
         this.nroAsientos = Math.min(nroAsientos,18);
     }
+
+    /**
+     * anade un asiento al piso
+     * @param asiento asiento a anadir
+     * @param pisoAsiento piso en el que se agregara el asiento
+     */
     @Override
     public void addAsiento(Asiento asiento, int pisoAsiento){
         if(pisoAsiento == 1){

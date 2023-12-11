@@ -5,10 +5,19 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase que extiende un JPanel, la cual representa los datos del cliente al comprar un pasaje
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class PanelDatosComprador extends JPanel {
     private JTextField nombreUsuario;
     private JTextField rutUsuario;
     private JButton btnConfirmarReserva;
+    /**
+     * Inicializa el panel con los JTextField, en los cuales el usuario podra rellenar con sus datos u un JButton
+     * para confirmar la reserva de los asientos
+     */
     public PanelDatosComprador(){
         nombreUsuario = new JTextField();
         nombreUsuario.setBackground(Color.WHITE);
@@ -36,6 +45,10 @@ public class PanelDatosComprador extends JPanel {
     public void addActionBtnReserva(ActionListener action){
         btnConfirmarReserva.addActionListener(action);
     }
+    /**
+     * Metodo que dibuja las instrucciones de cada texto y el titulo del panel
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);

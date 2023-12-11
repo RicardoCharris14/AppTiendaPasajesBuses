@@ -1,5 +1,10 @@
 package Logica;
 
+/**
+ * clase que representa un bus premium, es decir, contiene sillas premium
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class BusPremium extends Bus{
     private String tipoBus;
     public BusPremium(Pisos pisos){

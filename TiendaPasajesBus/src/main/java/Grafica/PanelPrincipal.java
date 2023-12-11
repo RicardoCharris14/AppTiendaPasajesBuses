@@ -12,6 +12,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+/**
+ * Panel que contiene todos los otros paneles, realiza la gestion de acciones de botones y mouse listeners, se encarga
+ * de hacer los cambios entre paneles
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class PanelPrincipal extends JPanel {
     private CardLayout cardLayout;
     private PanelPrincipal esteObjeto = this;
@@ -39,6 +45,10 @@ public class PanelPrincipal extends JPanel {
         accionBtnVolverPanel2();
         accionBtnVolverPanel3();
     }
+
+    /**
+     * crea un ActionListener que filtra los buses segun el itinerario escogido por el usuario y los muestra en otro panel
+     */
     private void accionBtnBuscarPasaje(){
         ActionListener accion1 = new ActionListener() {
             @Override
@@ -64,6 +74,10 @@ public class PanelPrincipal extends JPanel {
         };
         panel1.accionBtnBuscarTrayecto(accion1);
     }
+
+    /**
+     * crea un MouseListener que cambia del panel 2 al panel 1
+     */
     private void accionBtnVolverPanel2(){
         ActionListener accion2 = new ActionListener(){
             @Override
@@ -73,6 +87,13 @@ public class PanelPrincipal extends JPanel {
         };
         panel2.accionBtnVolver(accion2);
     }
+
+    /**
+     * crea un ActionListener que escoge un bus seleccionado por el usuario y muestra un panel con los asientos del bus
+     * escogido
+     * @param busSolicitado numero del bus que eleje el ActionListener
+     * @return ActionListener que ejecuta lo descrito anteriormente
+     */
     private ActionListener accionBtnsComprarPanel2(int busSolicitado){
 
         ActionListener accion3 = new ActionListener(){
@@ -144,6 +165,10 @@ public class PanelPrincipal extends JPanel {
         };
         return accion3;
     }
+
+    /**
+     * crea un ActionListener que permite volver del panel 3 al panel 2
+     */
     private void accionBtnVolverPanel3(){
         ActionListener accion4 = new ActionListener(){
             @Override
@@ -156,6 +181,10 @@ public class PanelPrincipal extends JPanel {
         };
         panel3.accionBtnVolver(accion4);
     }
+
+    /**
+     * crea un ActionListener que muestra los asientos del piso 1 en el panel de eleccion de asientos
+     */
     private void accionBtnPiso1Panel3(){
         ActionListener accion5 = new ActionListener() {
             @Override
@@ -165,6 +194,10 @@ public class PanelPrincipal extends JPanel {
         };
         panel3.crearBtnPiso1(accion5);
     }
+
+    /**
+     * crea un MouseListener que muestra los asientos del piso 2 en el panel de eleccion de asientos
+     */
     private void accionBtnPiso2Panel3(){
         ActionListener accion6 = new ActionListener() {
             @Override
@@ -174,6 +207,15 @@ public class PanelPrincipal extends JPanel {
         };
         panel3.crearBtnPiso2(accion6);
     }
+
+    /**
+     * crea un MouseListener en una zona determinada por 2 parametros, este MouseListener se encarga de seleccionar
+     * la silla "i" en el piso 1
+     * @param i es la silla que seleccionara el MouseListener
+     * @param desplazamientoX determina la zona en el eje x en la que funcionara el MouseListener
+     * @param desplazamientoY determina la zona en el eje y en la que funcionara el MouseListener
+     * @return retorna el MouseListener creado
+     */
     private MouseListener accionSeleccionarSillasP1(int i, int desplazamientoX, int desplazamientoY){
         MouseListener listener1 = new MouseListener() {
             @Override
@@ -212,6 +254,15 @@ public class PanelPrincipal extends JPanel {
         };
         return listener1;
     }
+
+    /**
+     * crea un MouseListener en una zona determinada por 2 parametros, este MouseListener se encarga de seleccionar
+     * la silla "i" en el piso 2
+     * @param i es la silla que seleccionara el MouseListener
+     * @param desplazamientoX determina la zona en el eje x en la que funcionara el MouseListener
+     * @param desplazamientoY determina la zona en el eje y en la que funcionara el MouseListener
+     * @return retorna el MouseListener creado
+     */
     private MouseListener accionSeleccionarSillasP2(int i,int desplazamientoX, int desplazamientoY){
         MouseListener listener1 = new MouseListener() {
             @Override
@@ -247,6 +298,10 @@ public class PanelPrincipal extends JPanel {
         };
         return listener1;
     }
+
+    /**
+     * crea un ActionListener que se encarga de mostrar el panel en el cual el usuario ingresara sus datos
+     */
     private void accionComprarPasaje(){
         ActionListener accionBtnComprar= new ActionListener() {
             @Override
@@ -259,6 +314,11 @@ public class PanelPrincipal extends JPanel {
         };
         panel3.accionBtnComprar(accionBtnComprar);
     }
+
+    /**
+     * crea un ActionListener que se encarga de reservar el/los asientos escogidos y crea un pasaje con los datos
+     * del usuario
+     */
     private void accionBtnReservar(){
         ActionListener accion = new ActionListener() {
             @Override

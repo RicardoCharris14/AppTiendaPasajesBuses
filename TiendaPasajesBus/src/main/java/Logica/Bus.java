@@ -1,5 +1,10 @@
 package Logica;
 
+/**
+ * clase que representa un bus con un numero de pisos, un recorrido unico y un valor de pasaje
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public abstract class Bus {
     private Pisos pisos;
     private Recorrido recorrido;

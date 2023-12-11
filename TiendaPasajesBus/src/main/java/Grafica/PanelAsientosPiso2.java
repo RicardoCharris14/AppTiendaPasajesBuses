@@ -8,8 +8,18 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+/**
+ * Clase que extiende de un JPanel, el cual representa los asientos del segundo piso del bus, los que estan
+ * seleccionados y los disponibles
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class PanelAsientosPiso2 extends JPanel {
     private ArrayList<Asiento> sillasSeleccionadas;
+    /**
+     *  Instancia un arraylist donde se iran guardando las sillas seleccionadas por el usuario e inicializa
+     * el panel de los asientos de piso2
+     */
     public PanelAsientosPiso2(){
         sillasSeleccionadas = new ArrayList<>();
 
@@ -19,6 +29,11 @@ public class PanelAsientosPiso2 extends JPanel {
     public ArrayList<Asiento> getSillasElejidas(){
         return sillasSeleccionadas;
     }
+    /**
+     * Metodo que dibuja el modelo de silla del bus con sus dimensiones, y repite el proceso hasta mostrar todos
+     * los asientos requeridos del segundo piso
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -89,20 +104,37 @@ public class PanelAsientosPiso2 extends JPanel {
             }
         }
     }
+    /**
+     * Metodo que permite seleccionar asientos del piso 2
+     * @param listener recibe un click del mouse y selecciona los asientos
+     */
     public void listenerAsientos(MouseListener listener){
         this.addMouseListener(listener);
     }
+    /**
+     * Metodo que elimina los listeners cuando cambio de panel, para que no queden con acciones anteriores
+     */
     public void eliminarAcciones(){
         MouseListener[] mouseListeners = this.getMouseListeners();
         for(MouseListener listener : mouseListeners){
             this.removeMouseListener(listener);
         }
     }
+    /**
+     *  Elimina todos los asientos seleccionados cuando presiono el boton de volver, para que asi pueda seleccionarlos
+     *  nuevamente
+     */
     public void eliminarAsientosSeleccionados() {
         while(!sillasSeleccionadas.isEmpty()){
             sillasSeleccionadas.remove(0);
         }
     }
+    /**
+     * Recibe un dato de tipo Polygon y lo desplaza en torno al eje x y al eje y
+     * @param polygon Polygon a ser desplazado
+     * @param xDesplazamiento magnitud que se desplazara el polygon en el eje x
+     * @param YDesplazamiento magnitud que se desplazara el polygon en el eje y
+     */
     private void movePolygon(Polygon polygon, int xOffset, int yOffset) {
         // Obtener el número de vértices del polígono
         int numVertices = polygon.npoints;

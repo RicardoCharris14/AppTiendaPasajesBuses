@@ -7,10 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * panel que muestra los diferentes buses con sus respectivos itinerarios
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class PanelViajesDisponibles extends JPanel {
     private int numeroViajes;
     JButton volver;
     JLabel instruccion;
+
+    /**
+     * inicializa las variables del panel, tales como el titulo, la etiqueta de instruccion y el boton de volver
+     */
     public PanelViajesDisponibles(){
         numeroViajes = 0;
 
@@ -40,9 +49,20 @@ public class PanelViajesDisponibles extends JPanel {
         this.setBackground(Color.WHITE);
         this.setLayout(null);
     }
+
+    /**
+     * le asigna un ActionListener al boton de volver
+     * @param accion es el ActionListener a asignar
+     */
     public void accionBtnVolver(ActionListener accion){
         volver.addActionListener(accion);
     }
+
+    /**
+     * crea los recuadros segun la cantidad de buses que coincidian con lo solicitado, si son 0 buses pide seleccionar
+     * otro itinerario
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -59,6 +79,11 @@ public class PanelViajesDisponibles extends JPanel {
         }
 
     }
+
+    /**
+     * imprime en pantalla la informacion de los buses y crea los botones para comprar esos buses, respectivamente
+     * @param accion MouseListener que se le agregara a los botones creados
+     */
     public void crearProgramacionBus(ActionListener accion){
         instruccion.setVisible(true);
         JButton botonComprarBus = new JButton("Comprar");
@@ -73,6 +98,10 @@ public class PanelViajesDisponibles extends JPanel {
 
         this.numeroViajes +=1;
     }
+
+    /**
+     * elimina la informacion de los buses y el boton para comprarlos del panel
+     */
     public void eliminarProgramacionBus(){
         for(int i=0;i<this.numeroViajes*2;i++){
             this.remove(3);
@@ -80,6 +109,11 @@ public class PanelViajesDisponibles extends JPanel {
         numeroViajes = 0;
     }
 
+    /**
+     * crea una etiqueta con la informacion del bus solicitado
+     * @param i variable que indica cual sera el bus del cual crear una etiqueta
+     * @return retorna la etiqueta creada
+     */
     private JLabel getJLabel(int i) {
         Bus busDisponible = EmpresaBuses.getEmpresaBuses(0).getBusesItinerarioCliente().get(i);
         String programacion = "Tipo Bus: "+busDisponible.getTipoBus()+"  |  Horario salida: "

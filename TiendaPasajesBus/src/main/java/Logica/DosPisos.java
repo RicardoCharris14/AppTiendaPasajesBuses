@@ -2,11 +2,22 @@ package Logica;
 
 import java.util.ArrayList;
 
+/**
+ * clase que se utiliza para crear un bus con 2 pisos
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class DosPisos implements Pisos {
     ArrayList<Asiento> asientosPiso1;
     ArrayList<Asiento> asientosPiso2;
     int nroAsientosPiso1;
     int nroAsientosPiso2;
+
+    /**
+     * inicializa las componentes
+     * @param nroAsientosPiso1 numero de asientos que habran en el primer piso
+     * @param nroAsientosPiso2 numero de asientos que habran en el segundo piso
+     */
     public DosPisos(int nroAsientosPiso1, int nroAsientosPiso2){
         asientosPiso1 = new ArrayList<>();
         asientosPiso2 = new ArrayList<>();

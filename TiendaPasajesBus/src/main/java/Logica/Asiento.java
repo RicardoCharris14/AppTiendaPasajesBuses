@@ -1,5 +1,10 @@
 package Logica;
 
+/**
+ * clase que simula un asiento de un bus
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public abstract class Asiento {
     private int numAsiento;
     private Boolean disponible;

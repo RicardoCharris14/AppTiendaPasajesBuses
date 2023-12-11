@@ -5,25 +5,34 @@ import Logica.EmpresaBuses;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.text.CollationElementIterator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Clase que permite seleccionar ciudad de origen/destino y fecha del viaje.
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class ListaOpcionesDesplegables{
     private JComboBox ciudadesOrigen;
     private JComboBox ciudadesDestino;
     private JComboBox fechasViaje;
     private JButton BtnBuscarViajes;
 
-
-    public ListaOpcionesDesplegables(EmpresaBuses empresaBuses) {
-        ArrayList<String> ciudades = empresaBuses.getCiudadesAsociadas();
+    /**
+     * Metodo que crea los JComboBox, que permiten seleccionar las ciudades de origen, destino y fecha de una
+     * lista desplegable, ademÃ¡s crea el boton de Buscar viajes, que permite encontrar los viajes disponibles segun
+     * lo seleccionado
+     *
+     */
+    public ListaOpcionesDesplegables() {
+        ArrayList<String> ciudades = EmpresaBuses.getEmpresaBuses(0).getCiudadesAsociadas();
         int NroCiudades = ciudades.size();
         String [] ciudadesOrigen = new String[NroCiudades+1];
         String [] ciudadesDestino = new String[NroCiudades+1];
 
-        ArrayList<LocalDate> fechasViajes = empresaBuses.getFechasViajes();
+        ArrayList<LocalDate> fechasViajes = EmpresaBuses.getEmpresaBuses(0).getFechasViajes();
         Collections.sort(fechasViajes);
         int NroFechas = fechasViajes.size();
         String [] fechas = new String[NroFechas+1];

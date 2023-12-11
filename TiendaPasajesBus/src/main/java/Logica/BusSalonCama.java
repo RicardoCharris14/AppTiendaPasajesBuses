@@ -1,5 +1,10 @@
 package Logica;
 
+/**
+ * clase que representa un bus del tipo salon cama, es decir, tiene asientos salon cama
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class BusSalonCama extends Bus{
     private String tipoBus;
     public BusSalonCama(Pisos pisos){

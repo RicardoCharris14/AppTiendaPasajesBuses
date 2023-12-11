@@ -4,6 +4,11 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+/**
+ * panel que contiene una foto de decoracion para el panel de eleccion de trayecto
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class PanelFotoEncabezado extends JPanel {
 
     private Image fotoEncabezado; //foto del logo de bus

@@ -9,6 +9,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+/**
+ * Clase que extiende de un JPanel, el cual representa la ventana donde estan:
+ * 1.- Los asientos del bus, donde se elije si es piso1 o piso2, y puede seleccionar mas de un asiento para reservarlo
+ * 2.- Los botones para elejir piso1 o piso2
+ * 3.- Los asientos disponibles, los ocupados y el seleccionado por el cliente
+ * 4.- Esta el boton de pagar, el cual simula la compra del pasaje
+ * 5.- EL boton volver, que elimina todos los cambios al cambiar de panel, para que asi se puede seleccionar
+ * todo desde el principio
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class PanelEleccionAsiento extends JPanel {
     private PanelAsientos asientos;
     private JButton volver;
@@ -20,6 +31,10 @@ public class PanelEleccionAsiento extends JPanel {
     private int cantidadPisos;
     private int precioTotal;
     private int nroSillas;
+    /**
+     * Metodo constructor que iniciliza todos los componentes del panel, los JLabel, los paneles interiores
+     * y los botones
+     */
     public PanelEleccionAsiento(){
         precioTotal = 0;
         cantidadPisos=1;
@@ -86,18 +101,32 @@ public class PanelEleccionAsiento extends JPanel {
     public ArrayList<Asiento> getSillasSeleccionadasP2(){
         return asientos.getSillasSeleccionadasP2();
     }
+    /**
+     * Aumenta el valor del precio total
+     * @param valor recibe el valor del asiento seleccionado
+     */
     public void aumentarPrecioTotal(int valor){
         precioTotal+=valor;
     }
     public void setPrecioTotal(int valor){
         precioTotal = valor;
     }
+
+    /**
+     * aumenta el numero de sillas seleccionadas
+     * @param nro define cuantas sillas se van a aumentar
+     */
     public void aumentarNroSillas(int nro){
         nroSillas+=nro;
     }
     public void setNroSillas(int nroSillas){
         this.nroSillas = nroSillas;
     }
+    /**
+     * Pinta las componentes, la simbologia de los colores de las sillas del bus, los textos de precio total y numero
+     * de sillas
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -169,12 +198,24 @@ public class PanelEleccionAsiento extends JPanel {
     public void setCantidadPisos(int cantidadPisos){
         this.cantidadPisos = cantidadPisos;
     }
+    /**
+     * añade el MouseListener al boton volver
+     * @param accion recibe un click del mouse y ejecuta la accion de volver
+     */
     public void accionBtnVolver(ActionListener accion){
         volver.addActionListener(accion);
     }
+    /**
+     * Boton que  simula la compra del pasaje
+     * @param accion recibe un click del mouse y ejecuta la accion de pagar
+     */
     public void accionBtnComprar(ActionListener accion){
         pagar.addActionListener(accion);
     }
+    /**
+     * Crea el boton para elejir el piso1 del bus
+     * @param accion recibe un click de mouse y selecciona el piso 1 del bus
+     */
     public void crearBtnPiso1(ActionListener accion){
         if(cantidadPisos==2){
             piso1 = new JButton("Piso 1");
@@ -187,6 +228,10 @@ public class PanelEleccionAsiento extends JPanel {
             this.add(piso1);
         }
     }
+    /**
+     * Crea el boton paras elejir el piso 2 del bus
+     * @param accion recibe un click de mouse y selecciona el piso 2 del bus
+     */
     public void crearBtnPiso2(ActionListener accion){
         if(cantidadPisos==2){
             piso2 = new JButton("Piso 2");
@@ -199,30 +244,56 @@ public class PanelEleccionAsiento extends JPanel {
             this.add(piso2);
         }
     }
-
+    /**
+     * propaga el MouseListener hacia el panel asientos piso 1
+     * @param listener recibe un click de mouse y selecciona asiento de piso 1
+     */
     public void seleccionadoresAsientosP1(MouseListener listener){
         asientos.seleccionadoresAsientosP1(listener);
     }
+    /**
+     * propaga el MouseListener hacia el panel asientos piso 2
+     * @param listener recibe un click de mouse y selecciona asiento de piso 2
+     */
     public void seleccionadoresAsientosP2(MouseListener listener){
         asientos.seleccionadoresAsientosP2(listener);
     }
+
+    /**
+     * llama la metodo eliminarListener del panel asientos
+     */
     public void eliminarListeners(){
         asientos.eliminarListeners();
     }
+    /**
+     * Metodo que elimina los asientos, para que puedan ser elejidos de nuevo y no presenten problemas
+     */
     public void eliminarAsientosSeleccionados(){
         asientos.eliminarAsientosSeleccionados();
     }
+
+    /**
+     * elimina los botones piso 1 y piso 2
+     */
     public void eliminarBtnsPiso(){
         int nroComponentes = this.getComponentCount();
         for(int i=0;i<nroComponentes-8;i++){
             this.remove(8);
         }
     }
+
+    /**
+     * muestra el panel que  contiene los asientos del piso 1
+     */
     public void mostrarPiso1(){
         asientos.mostrarPiso1();
         etiquetaPiso1.setVisible(true);
         etiquetaPiso2.setVisible(false);
     }
+
+    /**
+     * muestra el panel que contiene los asientos del piso 2
+     */
     public void mostrarPiso2(){
         if(cantidadPisos==2){
             asientos.mostrarPiso2();

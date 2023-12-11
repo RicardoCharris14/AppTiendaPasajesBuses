@@ -4,6 +4,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * clase que representa un pasaje de bus, este pasaje contiene toda la informacion sobre la reserva de un asiento en un
+ * bus especifico
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class Pasaje {
     private LocalDateTime fechaSalida;
     private String origen;
@@ -37,6 +43,12 @@ public class Pasaje {
         rutCliente = cliente.getRut();
         tipoBus = bus.getTipoBus();
     }
+
+    /**
+     * crea un parrafo de texto con la informacion de la reserva del asiento, como el nombre y rut del cliente, el
+     * origen, destino y fecha del trayecto, los asientos reservados y el valor del pasaje
+     * @return devuelve una String con la informacion del pasaje
+     */
     public String emitirPasaje(){
         StringBuilder asientos= new StringBuilder();
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm ");

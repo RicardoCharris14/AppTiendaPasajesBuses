@@ -2,6 +2,11 @@ package Logica;
 
 import java.time.LocalDateTime;
 
+/**
+ * clase que contiene los datos de un recorrido, especificamente, el origen, destino y fecha de salida
+ * @author Vicente Ramirez
+ * @author Ricardo Charris
+ */
 public class Recorrido {
     private LocalDateTime fechaSalida;
     private String origen;
@@ -11,6 +16,11 @@ public class Recorrido {
         this.origen = origen;
         this.destino = destino;
     }
+
+    /**
+     * crea una String con los datos del recorrido ordenados de forma ordenada
+     * @return String con los datos del recorido
+     */
     public String getDatosRecorrido(){
         return "Fecha de salida: "+fechaSalida.toString()+"\nTrayecto: "+origen+" - "+destino+"\n";
     }
