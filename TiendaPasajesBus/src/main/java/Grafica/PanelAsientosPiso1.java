@@ -47,6 +47,8 @@ public class PanelAsientosPiso1 extends JPanel {
 
         int numeroCiclo = 0;
         int sillasPorColumna;
+        int desplazamientoX=0;
+        int desplazamientoY=0;
         int numeroSillasPiso1 = EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().
                 getNroAsientosPiso1();
         if(numeroSillasPiso1 % 3 == 0){
@@ -56,6 +58,9 @@ public class PanelAsientosPiso1 extends JPanel {
         }
 
         for (int i = 0; i<numeroSillasPiso1;i++){
+            String numeroSilla=""+EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().
+                    getPisos().getAsiento(i+1).getNumAsiento();
+
             if(!EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().getPisos().getAsiento(i+1).getDisponible()){
                 g.setColor(Color.RED);
 
@@ -65,15 +70,21 @@ public class PanelAsientosPiso1 extends JPanel {
             }else{
                 g.setColor(Color.GREEN);
             }
+            g.drawString(numeroSilla,62+desplazamientoX,45+desplazamientoY);
             g.drawPolygon(silla);
+
+            movePolygon(silla,0,80);
+            desplazamientoY+=80;
             if ((i+1)%sillasPorColumna == 0){
                 numeroCiclo +=1;
                 if(numeroCiclo ==2){
                     movePolygon(silla,60,0);
+                    desplazamientoX+=60;
                 }
                 movePolygon(silla,60,-80 * sillasPorColumna);
+                desplazamientoX+=60;
+                desplazamientoY=0;
             }
-            movePolygon(silla,0,80);
         }
     }
 

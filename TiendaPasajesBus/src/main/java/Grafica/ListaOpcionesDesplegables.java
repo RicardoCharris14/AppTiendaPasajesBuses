@@ -7,7 +7,6 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.text.CollationElementIterator;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -51,9 +50,8 @@ public class ListaOpcionesDesplegables{
 
 
         fechas[0] = "Seleccione la fecha del viaje";
-        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         for(int i=1;i<=NroFechas;i++){
-            fechas[i] = fechasViajes.get(i-1).format(formatoFecha);
+            fechas[i] = fechasViajes.get(i-1).toString();
         }
         fechasViaje = new JComboBox(fechas);
         fechasViaje.setBounds(1050,240,300,50);

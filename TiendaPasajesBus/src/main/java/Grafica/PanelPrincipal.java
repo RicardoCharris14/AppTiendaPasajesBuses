@@ -190,8 +190,15 @@ public class PanelPrincipal extends JPanel {
                     if(!panel3.getSillasSeleccionadasP1().contains(asiento) && asiento.getDisponible()){
                         panel3.aumentarPrecioTotal(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().
                                 getValorPasaje());
-                        panel3.aumentarNroSillas();
+                        panel3.aumentarNroSillas(1);
                         panel3.getSillasSeleccionadasP1().add(asiento);
+                        repaint();
+                    }
+                    else if(panel3.getSillasSeleccionadasP1().contains(asiento)){
+                        panel3.aumentarPrecioTotal(-1*EmpresaBuses.getEmpresaBuses(0).
+                                getBusSolicitado().getValorPasaje());
+                        panel3.aumentarNroSillas(-1);
+                        panel3.getSillasSeleccionadasP1().remove(asiento);
                         repaint();
                     }
                 }
@@ -220,9 +227,14 @@ public class PanelPrincipal extends JPanel {
                     if(!panel3.getSillasSeleccionadasP2().contains(asiento) && asiento.getDisponible()){
                         panel3.aumentarPrecioTotal(EmpresaBuses.getEmpresaBuses(0).getBusSolicitado().
                                 getValorPasaje());
-                        panel3.aumentarNroSillas();
+                        panel3.aumentarNroSillas(1);
                         panel3.getSillasSeleccionadasP2().add(asiento);
                         repaint();
+                    }else if(panel3.getSillasSeleccionadasP2().contains(asiento)){
+                        panel3.aumentarPrecioTotal(-1*EmpresaBuses.getEmpresaBuses(0).
+                                getBusSolicitado().getValorPasaje());
+                        panel3.aumentarNroSillas(-1);
+                        panel3.getSillasSeleccionadasP2().remove(asiento);
                     }
                 }
             }

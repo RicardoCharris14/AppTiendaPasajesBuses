@@ -92,8 +92,8 @@ public class PanelEleccionAsiento extends JPanel {
     public void setPrecioTotal(int valor){
         precioTotal = valor;
     }
-    public void aumentarNroSillas(){
-        nroSillas+=1;
+    public void aumentarNroSillas(int nro){
+        nroSillas+=nro;
     }
     public void setNroSillas(int nroSillas){
         this.nroSillas = nroSillas;
