@@ -19,10 +19,8 @@ public class PanelEleccionTrayecto extends JPanel {
     private ListaOpcionesDesplegables opciones;
 
     public PanelEleccionTrayecto() {
-        EmpresaBuses empresaBuses = EmpresaBuses.getEmpresaBuses(0);
-
         PanelFotoEncabezado fotoEncabezado = new PanelFotoEncabezado();
-        fotoEncabezado.setBounds(120, 30, 1200, 180);
+        fotoEncabezado.setBounds(220, 30, 1000, 180);
 
         opciones = new ListaOpcionesDesplegables();
 

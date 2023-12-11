@@ -1,0 +1,45 @@
+# AppTiendaPasajesBuses
+
+Grupo 17
+Nombres Integrantes: Ricardo Charris Jiménez 
+		     Vicente Ramírez Torrealba
+
+
+Descripción del proyecto final: Nuestro proyecto es una aplicación de buses que permite reservar un asiento, elijiendo origen, destino y fecha.
+				El cliente selecciona el tipo de bus en el cual quiere viajar ya sea salon cama o premium, y que asientos quiere reservar.
+			        Puede reservar los asientos que desee, pero no puede reservar los asientos ocupados. Los buses son de uno y dos pisos, el cliente 
+				elije en cual quiere viajar. Para finalizar, compra un pasaje e ingresa sus datos para efectuar la compra. 
+
+Justificacion Patrones utilizados:
+
+Nosotros utilizamos 2 patrones, en primer lugar el patron Bridge:
+	Este patron se encarga de disminuir la cantidad de subclases en el programa, en nuestro caso lo usamos para dividir la creacion de diferentes tipos de buses,
+	por un lado los buses Premium y los buses SalonCama, y por el otro los buses de un piso y los de 2 pisos. Luego mediante el patron pudimos obtener buses de un piso
+	premium y buses de un piso salon cama, así mismo con los de dos pisos.
+
+Patron singleton: este patron lo utilizamos en la clase EmpresaBuses, la funcion de este patron es permitir la creacion de una unica instancia de la clase en la que se implementa,
+	ademas convierte a la clase en una clase global, en nuestro caso el programa funciona para una sola empresa de buses por lo tanto nos convenia que solo se pudiera
+	instanciar una vez, ademas de poder obtenerla desde cualquier parte del codigo.
+	
+
+Decisiones tomadas en el transcurso del proyecto: 
+
+En el proyecto hemos tenido que tomar decisiones para optimizar los tiempos de desarrollo del programa. Nos dividimos en la parte lógica del código y la parte gráfica.
+A medida que fuimos avanzando en el proyecto tuvimos que ir decidiendo el diseño de cada panel:
+ELejimos las listas desplegables para seleccionar las ciudades de origen y destino, y para seleccionar la fecha.
+También tomamos una decisión respecto a como el usuario compraría el pasaje: El usuario podía tener la facultad para elejir cada aspecto del viaje, o nosotros
+pondríamos viajes predefinidos. La última opción nos pareció la más acertada. 
+
+Por otro lado decidimos que el usuario podría seleccionar más de un asiento para reservarlo y así comprar más de un asiento a la vez. Una vez que comprara implementamos
+un panel que pidiera los datos del usuario (Nombre y rut).
+
+
+
+Problemas encontrados:
+
+A nivel de código no nos topamos con ningún problema engorroso pues gracias a las tareas anteriores quedamos bien preparados para este proyecto final. 
+El único gran problema que nos encontramos fue al crear un ActionListener fuera de la clase principal, lo creamos en un panel que estaba dentro del principal,
+esto nos llevo a tener que reestructurar la creacion del ActionListener y hacer que se cree en el PanelPrincipal pues al haberlo crearlo desde un subPanel
+no teníamos toda la informacion necesaria para programar la accion a realizar.
+Ademas, tuvimos problemas de tiempo pues a pesar que avanzamos bastante al inicio del proyecto, despues nos fuimos relajando y nos encontramos contra el tiempo
+otra vez. Yo creo que esto lo podríamos mejorar organizandonos mejor y definiendo metas cortas para ir avanzando diariamente en futuros proyectos.

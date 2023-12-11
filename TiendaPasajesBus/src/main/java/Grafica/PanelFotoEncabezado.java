@@ -15,7 +15,7 @@ public class PanelFotoEncabezado extends JPanel {
 
     public PanelFotoEncabezado(){
 
-        fotoEncabezado = new ImageIcon("src/main/java/Grafica/Imagenes/busChocado.png").getImage();
+        fotoEncabezado = new ImageIcon("src/main/java/grafica/imagenes/fotoEncabezado.jpg").getImage();
         this.setLayout(null);
         this.setBackground(Color.red);
         LineBorder borde = new LineBorder(Color.BLACK, 2, true);

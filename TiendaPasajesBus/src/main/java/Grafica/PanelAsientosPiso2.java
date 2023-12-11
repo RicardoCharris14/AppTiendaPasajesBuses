@@ -132,8 +132,8 @@ public class PanelAsientosPiso2 extends JPanel {
     /**
      * Recibe un dato de tipo Polygon y lo desplaza en torno al eje x y al eje y
      * @param polygon Polygon a ser desplazado
-     * @param xDesplazamiento magnitud que se desplazara el polygon en el eje x
-     * @param YDesplazamiento magnitud que se desplazara el polygon en el eje y
+     * @param xOffset magnitud que se desplazara el polygon en el eje x
+     * @param yOffset magnitud que se desplazara el polygon en el eje y
      */
     private void movePolygon(Polygon polygon, int xOffset, int yOffset) {
         // Obtener el número de vértices del polígono

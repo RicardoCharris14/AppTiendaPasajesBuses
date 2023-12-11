@@ -1,4 +1,8 @@
 
-public class EmpresaBusesTest {
 
+public class EmpresaBusesTest {
+    @Test
+    void testEmpresa(){
+
+    }
 }

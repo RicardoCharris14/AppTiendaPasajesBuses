@@ -8,10 +8,10 @@ import java.util.ArrayList;
  * @author Ricardo Charris
  */
 public class DosPisos implements Pisos {
-    ArrayList<Asiento> asientosPiso1;
-    ArrayList<Asiento> asientosPiso2;
-    int nroAsientosPiso1;
-    int nroAsientosPiso2;
+    private ArrayList<Asiento> asientosPiso1;
+    private ArrayList<Asiento> asientosPiso2;
+    private int nroAsientosPiso1;
+    private int nroAsientosPiso2;
 
     /**
      * inicializa las componentes
