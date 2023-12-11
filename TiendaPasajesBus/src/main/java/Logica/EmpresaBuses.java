@@ -30,24 +30,32 @@ public class EmpresaBuses {
         }
         return instancia;
     }
-    public Pasaje comprarPasaje(Cliente cliente, Bus busSolicitado, int nroAsiento)throws AsientoOcupadoException{
+    public Pasaje comprarPasaje(Cliente cliente, Bus busSolicitado, int[] numerosAsientos){
         if(buses.contains(busSolicitado)){
-            Asiento asientoSolicitado = busSolicitado.getAsiento(nroAsiento);
-            if(asientoSolicitado!= null){
-                if(asientoSolicitado.getDisponible()){
-                    asientoSolicitado.setDisponible(false);
-                    Pasaje pasaje = new Pasaje(cliente, busSolicitado, asientoSolicitado.getNumAsiento());
-                    clientes.add(cliente);
-                    System.out.println(pasaje.emitirPasaje());
-                    return pasaje;
-                }
-                else{
-                    throw new AsientoOcupadoException("El asiento numero "+nroAsiento+" no estÃ¡ disponible.\n");
+            int largoNumerosAsientos = numerosAsientos.length;
+            ArrayList<Integer> asientosAComprar = new ArrayList<>();
+
+            for(int i=0;i<largoNumerosAsientos;i++){
+                Asiento asientoSolicitado = busSolicitado.getAsiento(numerosAsientos[i]);
+                if(asientoSolicitado!= null){
+                    if(asientoSolicitado.getDisponible()){
+                        asientoSolicitado.setDisponible(false);
+                        asientosAComprar.add(asientoSolicitado.getNumAsiento());
+                    }
+                    else{
+                        System.out.println(("El asiento numero "+numerosAsientos[i]+" no estÃ¡ disponible.\n"));
+                    }
                 }
             }
-            else{
+            if(asientosAComprar.isEmpty()){
                 return null;
+            }else{
+                clientes.add(cliente);
+                Pasaje pasaje = new Pasaje(cliente, busSolicitado, asientosAComprar);
+                System.out.println(pasaje.emitirPasaje());
+                return pasaje;
             }
+
         }
         else{
             return null;
