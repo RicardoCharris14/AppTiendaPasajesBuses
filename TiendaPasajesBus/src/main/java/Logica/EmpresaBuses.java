@@ -98,7 +98,6 @@ public class EmpresaBuses {
      * @param precio precio del bus
      */
     public void agregarBus(Bus bus, String origen, String destino, LocalDateTime fecha, int precio){
-        System.out.println(buses.size()+" | "+fechasViajes.size());
         boolean fechaExiste = false;
         int contadorBusesIgualDia = 0;
         if(bus!=null && buses.size()<capacidadBuses){
@@ -118,7 +117,6 @@ public class EmpresaBuses {
                     bus.setValorPasaje(precio);
                     buses.add(bus);
                     for(LocalDate fechaNoHora : fechasViajes){
-                        System.out.println(fechaNoHora.toString()+" | "+fechaSinHora.toString());
                         if(fechaNoHora.toString().equals(fechaSinHora.toString())){
                             fechaExiste=true;
                             break;

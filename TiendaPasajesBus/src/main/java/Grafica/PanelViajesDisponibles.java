@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  */
 public class PanelViajesDisponibles extends JPanel {
     private int numeroViajes;
-    JButton volver;
-    JLabel instruccion;
+    private JButton volver;
+    private JLabel instruccion;
 
     /**
      * inicializa las variables del panel, tales como el titulo, la etiqueta de instruccion y el boton de volver
